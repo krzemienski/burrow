@@ -35,7 +35,7 @@ struct DashboardView: View {
     @Environment(\.openWindow) private var openWindow
 
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
             BrandColor.bean1.ignoresSafeArea()
 
             VStack(alignment: .leading, spacing: 18) {
@@ -48,7 +48,8 @@ struct DashboardView: View {
             }
             .padding(24)
         }
-        .frame(minWidth: 800, idealWidth: 800, minHeight: 760, idealHeight: 760)
+        .frame(minWidth: 800, idealWidth: 800, minHeight: 600, alignment: .topLeading)
+        .fixedSize(horizontal: false, vertical: true)
         .preferredColorScheme(.dark)
         .onAppear {
             observer.start()
