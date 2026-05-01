@@ -48,7 +48,7 @@ struct DashboardView: View {
             }
             .padding(24)
         }
-        .frame(width: 800, height: 560)
+        .frame(minWidth: 800, idealWidth: 800, minHeight: 760, idealHeight: 760)
         .preferredColorScheme(.dark)
         .onAppear {
             observer.start()

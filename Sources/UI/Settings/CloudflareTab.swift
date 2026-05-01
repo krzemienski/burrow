@@ -9,6 +9,7 @@ struct CloudflareTab: View {
     private let prefs = PreferencesStore.shared
 
     @State private var tokenInput: String = ""
+    @State private var emailInput: String = ""        // empty => bearer; non-empty => Global API Key (legacy)
     @State private var verifyState: VerifyState = .idle
     @State private var accounts: [Account] = []
     @State private var zones: [Zone] = []
@@ -28,7 +29,16 @@ struct CloudflareTab: View {
     var body: some View {
         Form {
             Section("API Token") {
-                SecureField("Paste your Cloudflare API token", text: $tokenInput)
+                Text("Leave email blank for a scoped Bearer token. Fill email for a Global API Key (legacy auth, all scopes).")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                TextField("Email (Global API Key only)", text: $emailInput)
+                    .autocorrectionDisabled()
+                    .textContentType(.emailAddress)
+                    .accessibilityLabel("Cloudflare account email (legacy auth)")
+
+                SecureField("API key or bearer token", text: $tokenInput)
                     .accessibilityLabel("Cloudflare API token input")
 
                 HStack {
@@ -168,9 +178,19 @@ struct CloudflareTab: View {
     private func loadStoredState() {
         selectedAccountID = prefs.selectedAccountID ?? ""
         selectedZoneID    = prefs.selectedZoneID ?? ""
+        emailInput        = prefs.cloudflareEmail ?? ""
         Task {
             tokenInput = (try? await KeychainService.shared.getAPIToken()) ?? ""
         }
+    }
+
+    /// Auth resolved from the in-edit fields (NOT from prefs, which may be stale
+    /// while the user is mid-edit). Empty email => bearer; non-empty => legacy.
+    private var liveAuth: CloudflareAuth {
+        let trimmed = emailInput.trimmingCharacters(in: .whitespaces)
+        return trimmed.isEmpty
+            ? .bearer(token: tokenInput)
+            : .legacy(email: trimmed, apiKey: tokenInput)
     }
 
     private func verify() {
@@ -179,7 +199,7 @@ struct CloudflareTab: View {
         loadError = nil
         Task {
             do {
-                let client = CloudflareClient(auth: CloudflareAuth.resolved(token: tokenInput))
+                let client = CloudflareClient(auth: liveAuth)
                 let result = try await client.verifyToken()
                 if result.status == "active" {
                     await MainActor.run { verifyState = .valid(id: result.id) }
@@ -203,7 +223,7 @@ struct CloudflareTab: View {
     private func loadAccounts(client: CloudflareClient? = nil) {
         Task {
             do {
-                let c = client ?? CloudflareClient(auth: CloudflareAuth.resolved(token: tokenInput))
+                let c = client ?? CloudflareClient(auth: liveAuth)
                 let result = try await c.listAccounts()
                 await MainActor.run {
                     accounts = result
@@ -221,7 +241,7 @@ struct CloudflareTab: View {
     private func loadZones(client: CloudflareClient? = nil) {
         Task {
             do {
-                let c = client ?? CloudflareClient(auth: CloudflareAuth.resolved(token: tokenInput))
+                let c = client ?? CloudflareClient(auth: liveAuth)
                 let result = try await c.listZones()
                 await MainActor.run {
                     zones = result
@@ -248,6 +268,12 @@ struct CloudflareTab: View {
         Task {
             do {
                 try await KeychainService.shared.setAPIToken(tokenInput)
+                // Persist email companion atomically with token: empty => bearer,
+                // non-empty => legacy. Prevents stale-email + new-bearer mismatch.
+                let trimmedEmail = emailInput.trimmingCharacters(in: .whitespaces)
+                await MainActor.run {
+                    prefs.cloudflareEmail = trimmedEmail.isEmpty ? nil : trimmedEmail
+                }
                 await MainActor.run {
                     saveConfirmed = true
                 }

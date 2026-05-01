@@ -38,7 +38,10 @@ struct BurrowApp: App {
         Window("Dashboard", id: "dashboard") {
             DashboardView()
         }
-        .windowResizability(.contentSize)
+        // contentMinSize: respect DashboardView's .frame(minHeight:) for the
+        // initial size, but allow the user to resize the window if they need
+        // more room. Fixes the bottom-row cutoff observed in v1.0.0-rc1.
+        .windowResizability(.contentMinSize)
 
         // ---------- First-run wizard ----------
         Window("Welcome to Burrow", id: "first-run") {

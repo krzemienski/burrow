@@ -16,19 +16,20 @@ Filed for tracking; severity and fix priority noted per item.
 - Replace with a deep link to `log stream --predicate 'subsystem == "com.krzemienski.burrow"'` so users learn to filter at the OS level.
 - Repurpose to gate Burrow's own emit verbosity by reading `prefs.logLevel` inside `Log.swift` and conditionally calling `.debug` / `.info` / `.error`. Adds wiring; arguable benefit since OSLog already supports level filters.
 
-## DEF-2 — Wizard step 3 (Account & Zone) silently fails on insufficient-scope token
+## DEF-2 — Wizard step 3 (Account & Zone) silently fails on insufficient-scope token  ✅ FIXED
 
-**Severity:** medium (UX)
-**Surface:** `Sources/UI/FirstRun/Steps/AccountZoneStep.swift`
-**Symptom:** Token with only `Cloudflare Tunnel Read` (missing `Edit`, `DNS`, `Zone Read`, `Account Settings Read`) passes step 2's `verifyToken()` (which calls `/user/tokens/verify` — that endpoint only confirms the token is active, not that it has any specific scopes). The wizard advances to step 3 and shows empty Account / Zone pickers with **no error message**.
+**Status:** Fixed in commit `090d2fd` (`Sources/UI/FirstRun/Steps/AccountZoneStep.swift`).
+Empty-result branch now sets `loadState = .error(...)` with the specific missing scopes listed:
 
-**Expected** (per PRD §11.1 AT-3): "Token verify with insufficient scope shows exact missing scope."
+```swift
+if a.isEmpty && z.isEmpty {
+    loadState = .error("Token is missing required read scopes…")
+}
+```
 
-**Reproducible:** mint a CF API token with only `Cloudflare Tunnel Read` permission group, paste into Burrow wizard, click Verify, click Continue. Observed: step 3 with empty pickers, no error surfaced.
+**Original symptom:** Token with only `Cloudflare Tunnel Read` passed step 2's `verifyToken()` (the verify endpoint only confirms the token is active), advanced to step 3, and showed empty Account / Zone pickers with no error.
 
-**Root cause:** `client.listAccounts()` and/or `client.listZones()` likely return empty (HTTP 200 but `result: []` because the token can't see those resources) instead of throwing `CloudflareError.insufficientScope`. The step's empty-result path doesn't surface "missing scope" UI.
-
-**Fix for v1.1:** in `AccountZoneStep`, if `listAccounts()` returns empty AND the token's permissions don't cover Account Settings Read, surface a missing-scope error and refuse to advance — matching the polish already present in `TokenStep.verifyStatusView` for the `.scopeError([String])` case.
+**Recommended user path now:** use a Global API Key (paste email + key in step 2 / Settings → Cloudflare). Global Keys carry all scopes inherently, so scope-diff UX is moot in that flow.
 
 ## DEF-3 — App must be in `/Applications` for SMAppService persistence
 
