@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burrow Docs — Overview</title>
+  <link rel="stylesheet" href="assets/docs.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../site/index.html" class="nav-brand">
+      <img src="../site/assets/wordmark.svg" alt="Burrow" width="120" height="24">
+    </a>
+    <div class="nav-search">
+      <input type="search" id="search-input" placeholder="Search docs…" aria-label="Search documentation">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar">
+      <nav aria-label="Documentation navigation">
+        <ul class="sidebar-nav">
+          <li class="nav-section">Getting Started</li>
+          <li><a href="index.html" class="active">Overview</a></li>
+          <li><a href="install.html">Installation</a></li>
+          <li class="nav-section">Reference</li>
+          <li><a href="configure.html">Configuration</a></li>
+          <li><a href="api.html">Cloudflare API</a></li>
+          <li class="nav-section">Support</li>
+          <li><a href="troubleshoot.html">Troubleshooting</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content" id="main-content">
+      <h1>Burrow Documentation</h1>
+      <p class="lead">Burrow is a notarized macOS menu bar application that exposes your Mac's SSH daemon over a stable Cloudflare Tunnel — no port forwarding, no dynamic DNS, no configuration files.</p>
+
+      <h2>What Burrow does</h2>
+      <p>Burrow automates the full Cloudflare Tunnel setup that would otherwise require a terminal session, a YAML config file, a launchd plist, and manual DNS management. You paste one API token. Burrow creates a named tunnel, provisions a CNAME record (<code>m4.hack.ski</code> or any subdomain you choose), and starts <code>cloudflared</code> as a managed child process. The menu bar icon flips from gray to orange when the tunnel is live.</p>
+
+      <p>Because the tunnel uses Cloudflare's QUIC-based edge network for the outbound connection, SSH reaches your Mac even when it sits behind NAT, CGNAT, or a firewall that blocks all inbound TCP.</p>
+
+      <h2>Architecture in one paragraph</h2>
+      <p>Burrow is a single SwiftUI <code>MenuBarExtra</code> app (no Dock icon, <code>LSUIElement = YES</code>). It holds one <code>CloudflareClient</code> actor wrapping <code>URLSession</code> for all CF API v4 calls and one <code>CloudflaredManager</code> actor that owns the <code>Process</code> running <code>cloudflared tunnel run --token &lt;run_token&gt;</code>. Your API token and the tunnel run token are stored in the system Keychain under <code>com.krzemienski.burrow</code> — they never appear in logs, UserDefaults, or any file on disk.</p>
+
+      <h2>Key properties</h2>
+      <ul>
+        <li><strong>Stable hostname.</strong> The CNAME is created once and never changes. The tunnel UUID is the permanent address; <code>cfargotunnel.com</code> handles routing.</li>
+        <li><strong>Keychain-only secrets.</strong> API token and run token live in <code>kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</code> items. Never logged.</li>
+        <li><strong>Sleep and wake aware.</strong> <code>CloudflaredManager</code> listens to system power notifications. Tunnel stops on sleep, restarts within 10 seconds on wake.</li>
+        <li><strong>Network resilient.</strong> <code>NWPathMonitor</code> triggers reconnect on interface change. Exponential backoff caps at 60 seconds.</li>
+        <li><strong>No sandbox for v1.0.</strong> Hardened Runtime is on; App Sandbox is off so <code>Process.launch()</code> can reach <code>cloudflared</code> in <code>/opt/homebrew/bin</code>.</li>
+      </ul>
+
+      <h2>Requirements</h2>
+      <ul>
+        <li>macOS 13 Ventura or later</li>
+        <li>A Cloudflare account with at least one active zone</li>
+        <li><code>cloudflared</code> installed via <code>brew install cloudflared</code></li>
+        <li>A Cloudflare API token with four specific permission scopes (see <a href="install.html#token">Installation → Create an API token</a>)</li>
+      </ul>
+
+      <h2>Documentation map</h2>
+      <p>Start with <a href="install.html">Installation</a> if you are setting up Burrow for the first time. The wizard covers token creation, zone selection, subdomain choice, and tunnel provisioning end to end.</p>
+      <p>Once running, <a href="configure.html">Configuration</a> explains every setting in the Settings window. <a href="api.html">Cloudflare API</a> documents every endpoint Burrow calls so you can verify permissions or debug token issues manually with <code>curl</code>. <a href="troubleshoot.html">Troubleshooting</a> covers the most common failures and how to read the unified system log.</p>
+
+      <div class="callout callout-note">
+        <strong>Version note.</strong> This documentation covers Burrow v1.0. Bundle ID: <code>com.krzemienski.burrow</code>. Filter logs with <code>log stream --predicate 'subsystem == "com.krzemienski.burrow"'</code>.
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/search.js"></script>
+</body>
+</html>

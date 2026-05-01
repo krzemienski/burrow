@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burrow Docs — Configuration</title>
+  <link rel="stylesheet" href="assets/docs.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../site/index.html" class="nav-brand">
+      <img src="../site/assets/wordmark.svg" alt="Burrow" width="120" height="24">
+    </a>
+    <div class="nav-search">
+      <input type="search" id="search-input" placeholder="Search docs…" aria-label="Search documentation">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar">
+      <nav aria-label="Documentation navigation">
+        <ul class="sidebar-nav">
+          <li class="nav-section">Getting Started</li>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="install.html">Installation</a></li>
+          <li class="nav-section">Reference</li>
+          <li><a href="configure.html" class="active">Configuration</a></li>
+          <li><a href="api.html">Cloudflare API</a></li>
+          <li class="nav-section">Support</li>
+          <li><a href="troubleshoot.html">Troubleshooting</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content" id="main-content">
+      <h1>Configuration</h1>
+      <p class="lead">Burrow's Settings window has five tabs. This reference explains every control, where its value is stored, and what happens when you change it.</p>
+
+      <h2 id="general">General tab</h2>
+
+      <h3>Launch at login</h3>
+      <p>Toggle registers or deregisters Burrow with <code>SMAppService.mainApp</code>. When enabled, macOS starts Burrow as part of the login sequence — before the Dock appears. The tunnel is live within seconds of desktop load. Stored as a boolean in <code>PreferencesStore</code> (UserDefaults key <code>launchAtLogin</code>). Registration fails silently if the app is not in <code>/Applications</code>; Burrow detects this and shows a prompt to move the app.</p>
+
+      <h3>Notifications</h3>
+      <p>Enables or disables <code>UNUserNotificationCenter</code> banners. When first toggled on, Burrow requests notification authorization. The following events trigger a notification: token revoked externally, three or more tunnel failures within a five-minute window, cloudflared binary not found at startup. Silent reconnects (network change, sleep/wake) never trigger notifications.</p>
+
+      <h2 id="cloudflare">Cloudflare tab</h2>
+
+      <h3>API token</h3>
+      <p>Shows the last four characters of the stored token for identification. To replace it, click <strong>Change</strong> — this opens a secure input sheet, validates the new token against <code>GET /user/tokens/verify</code>, checks all four required scopes, and writes to Keychain only on success. The old token is overwritten atomically. If the new token fails scope validation, the existing token is preserved and an error sheet lists the missing permissions.</p>
+
+      <h3>Account</h3>
+      <p>The Cloudflare account ID used for all tunnel and zone operations. Set during the wizard and read-only after setup. To change accounts, run the tunnel uninstall flow (Advanced tab → Delete tunnel), which stops <code>cloudflared</code>, deletes the tunnel via API, removes the CNAME record, and clears Keychain. Then re-run the wizard.</p>
+
+      <h3>Zone</h3>
+      <p>The zone name (e.g. <code>hack.ski</code>) and zone ID. Read-only after setup. Changing zones requires uninstalling and re-provisioning the tunnel because the CNAME record is bound to a specific zone's DNS.</p>
+
+      <h2 id="tunnel">Tunnel tab</h2>
+
+      <h3>Tunnel name</h3>
+      <p>The human-readable name passed to <code>POST /accounts/{id}/cfd_tunnel</code> during setup. Format: <code>cf-tunnel-menubar-&lt;hostname&gt;</code>. Read-only after creation. The wizard blocks creation if the name already exists in the account and offers to reuse the existing tunnel's run token instead.</p>
+
+      <h3>Tunnel UUID</h3>
+      <p>The UUID returned by Cloudflare at tunnel creation. This is the stable identifier that appears in the <code>cfargotunnel.com</code> CNAME target. Shown for reference only; not editable.</p>
+
+      <h3>Ingress service</h3>
+      <p>Fixed to <code>ssh://localhost:22</code> in v1.0. The ingress array stored in Cloudflare always contains two rules: the hostname rule pointing to <code>ssh://localhost:22</code> and a mandatory catch-all <code>http_status:404</code>. Cloudflare rejects any ingress array whose last rule has a hostname — the catch-all is required by the API.</p>
+
+      <h3>Reconnect behavior</h3>
+      <p>Controls the backoff when <code>cloudflared</code> exits unexpectedly. Default: exponential starting at 2 seconds, doubling each attempt, capped at 60 seconds. After three failures within five minutes, Burrow posts a persistent notification and pauses retries until you click <strong>Retry</strong> in the menu.</p>
+
+      <h2 id="dns">DNS tab</h2>
+
+      <h3>Hostname</h3>
+      <p>The full FQDN of the CNAME record (e.g. <code>m4.hack.ski</code>). Provisioned during setup. This is the address you use in your SSH command and in <code>~/.ssh/config</code>. Read-only after setup.</p>
+
+      <h3>CNAME target</h3>
+      <p>Always <code>&lt;tunnel_uuid&gt;.cfargotunnel.com</code> with <code>proxied: true</code>. The proxied flag is mandatory — a non-proxied CNAME to <code>cfargotunnel.com</code> returns NXDOMAIN because Cloudflare does not expose an underlying IP without proxying enabled.</p>
+
+      <h3>DNS record ID</h3>
+      <p>Cloudflare's internal identifier for the CNAME record, returned by <code>POST /zones/{zone_id}/dns_records</code>. Stored in <code>PreferencesStore</code> so Burrow can update or delete the record without an extra lookup round-trip on every operation.</p>
+
+      <h2 id="advanced">Advanced tab</h2>
+
+      <h3>cloudflared path</h3>
+      <p>The filesystem path to the <code>cloudflared</code> binary. <code>BinaryLocator</code> searches <code>/opt/homebrew/bin</code>, <code>/usr/local/bin</code>, and <code>/usr/bin</code> in that order. You can override with a custom path — useful if <code>cloudflared</code> is installed by Nix or MacPorts at a non-standard location. The path is validated with <code>cloudflared --version</code> before saving; the semver is parsed from the output using the pattern <code>version (\d+\.\d+\.\d+)</code>.</p>
+
+      <h3>Log level</h3>
+      <p>Sets the minimum OSLog level for the <code>com.krzemienski.burrow</code> subsystem. Options: <em>info</em> (default), <em>debug</em>, <em>error</em>. Debug mode logs every API request URL and HTTP status code. Raw tokens are always scrubbed — the pattern <code>--token \S+</code> is replaced with <code>--token [REDACTED]</code> before any string reaches OSLog, regardless of log level.</p>
+
+      <h3>cloudflared invocation</h3>
+      <p>Burrow uses cloud-managed mode by default:</p>
+      <div class="code-wrap">
+        <pre><code>cloudflared tunnel run --token &lt;run_token_base64&gt;</code></pre>
+      </div>
+      <p>The run token is retrieved from Keychain at startup, not stored in any file. If you need the local-managed override (Advanced → Expert mode), Burrow instead uses:</p>
+      <div class="code-wrap">
+        <pre><code>cloudflared tunnel --config /path/to/config.yml run &lt;tunnel_uuid&gt;</code></pre>
+      </div>
+      <p>Local mode is not recommended — it requires a YAML config file on disk and disables cloud-side ingress management via the API.</p>
+
+      <h3>Delete tunnel</h3>
+      <p>Uninstall flow: stops <code>cloudflared</code> (SIGTERM, 5-second grace, then SIGKILL), waits 10 seconds for Cloudflare to register zero active connections, calls <code>DELETE /accounts/{id}/cfd_tunnel/{tunnel_id}</code> with up to three retries, then deletes the CNAME record. Clears both Keychain items. Resets <code>PreferencesStore</code> to factory defaults. On next launch the first-run wizard opens again.</p>
+
+      <div class="callout callout-error">
+        <strong>Delete is permanent.</strong> The tunnel UUID is gone. The DNS record is deleted. SSH connections using this hostname will fail immediately. There is no undo. Update any <code>~/.ssh/config</code> entries on client machines before proceeding.
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/search.js"></script>
+</body>
+</html>

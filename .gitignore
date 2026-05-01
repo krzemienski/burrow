@@ -1,0 +1,98 @@
+# =========================================================
+# Burrow — .gitignore
+# =========================================================
+
+# ----- Xcode -----
+build/
+DerivedData/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.swp
+*.swo
+*~
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+*.moved-aside
+*.dSYM.zip
+*.dSYM
+timeline.xctimeline
+playground.xcworkspace
+
+# ----- Swift Package Manager -----
+.build/
+.swiftpm/
+Package.resolved
+
+# ----- macOS -----
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+
+# ----- Secrets / credentials -----
+# These should never be committed; if found, rotate immediately.
+*.pem
+*.p12
+*.cer
+*.mobileprovision
+*.provisionprofile
+.env
+.env.local
+.env.*.local
+secrets.json
+credentials.json
+DEEPEST-PROMPT.xml
+
+# Per-user Apple Developer info
+ExportOptions.plist
+*.entitlements.local
+
+# ----- Notarization artifacts (regenerable) -----
+notarization-log.json
+notarization-receipt.json
+*.dmg
+*.zip
+*.app
+
+# ----- Agent state (per-user / per-session, never shared) -----
+.agent/state/
+.agent/research/
+.agent/plans/
+
+# ----- Validation evidence is committed only by explicit gate -----
+# Uncomment if evidence becomes too large and we move it out of git:
+# e2e-evidence/
+
+# ----- Build outputs -----
+*.ipa
+Burrow.app/
+Output/
+
+# ----- Editor / IDE -----
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.cursor/
+
+# ----- Claude Code session artifacts -----
+.claude/
+.remember/
+.omc/
+
+# ----- Crucible/Forge runtime artifacts (per-run, not for sharing) -----
+.crucible/
+.crucible-run-id
+.guild/
+.autocode/
+evidence/session-receipts/
+evidence/skill-enrichment-delta/
+
+# ----- Agent state (pre-existing convention) -----
+.agent/
+
+# ----- Crucible runtime artifacts (entire dir, not just session-receipts) -----
+evidence/

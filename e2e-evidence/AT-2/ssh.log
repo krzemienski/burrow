@@ -1,0 +1,6 @@
+exit_code=255
+---STDOUT---
+
+---STDERR---
+websocket: bad handshake
+Connection closed by UNKNOWN port 65535

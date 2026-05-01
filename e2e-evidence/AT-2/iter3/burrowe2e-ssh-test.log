@@ -1,0 +1,9 @@
+[01] getAccessServiceToken appID=7af17021-21a9-44a4-9304-c23d47608bea
+[01] ok client_id_len=39 secret_len=64
+[02] spawn sshpass ssh → nick@m4.hack.ski
+[EVIDENCE] wrote /Users/nick/Desktop/cf-tunnel-menubar/e2e-evidence/AT-2/ssh.log (205 bytes)
+[SSH_OK] BURROW_E2E_OK
+m4-max-728.local
+25.5.0
+2026-05-01T03:09:24Z
+BURROW_SENTINEL_1777604964

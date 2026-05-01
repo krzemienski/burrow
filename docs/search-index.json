@@ -1,0 +1,96 @@
+[
+  {
+    "url": "index.html",
+    "title": "Overview — Burrow Docs",
+    "headings": [
+      "What Burrow does",
+      "Architecture in one paragraph",
+      "Key properties",
+      "Requirements",
+      "Documentation map"
+    ],
+    "body_excerpt": "Burrow is a notarized macOS menu bar application that exposes your Mac SSH daemon over a stable Cloudflare Tunnel. No port forwarding, no dynamic DNS, no configuration files. Paste one API token and Burrow creates a named tunnel, provisions a CNAME record, and starts cloudflared as a managed child process."
+  },
+  {
+    "url": "install.html",
+    "title": "Installation — Burrow Docs",
+    "headings": [
+      "Prerequisites",
+      "Create an API token",
+      "Install Burrow",
+      "Run the first-run wizard",
+      "Configure your SSH client",
+      "Verify from a different network",
+      "Enable launch at login"
+    ],
+    "body_excerpt": "Install cloudflared with brew install cloudflared. Create a Cloudflare API token with four required scopes: Account Cloudflare Tunnel Edit, Zone DNS Edit, Zone Zone Read, Account Account Settings Read. Drag Burrow.app to Applications. The first-run wizard creates the tunnel, provisions DNS, and stores the run token in Keychain."
+  },
+  {
+    "url": "configure.html",
+    "title": "Configuration — Burrow Docs",
+    "headings": [
+      "General tab",
+      "Launch at login",
+      "Notifications",
+      "Cloudflare tab",
+      "API token",
+      "Account",
+      "Zone",
+      "Tunnel tab",
+      "Tunnel name",
+      "Tunnel UUID",
+      "Ingress service",
+      "Reconnect behavior",
+      "DNS tab",
+      "Hostname",
+      "CNAME target",
+      "DNS record ID",
+      "Advanced tab",
+      "cloudflared path",
+      "Log level",
+      "Delete tunnel"
+    ],
+    "body_excerpt": "Burrow Settings has five tabs: General, Cloudflare, Tunnel, DNS, Advanced. Launch at login uses SMAppService. API token stored in Keychain. Tunnel uses cloud-managed mode with cloudflared tunnel run --token. Delete tunnel stops cloudflared, calls DELETE on tunnel API, removes the CNAME record, and clears Keychain."
+  },
+  {
+    "url": "api.html",
+    "title": "Cloudflare API Reference — Burrow Docs",
+    "headings": [
+      "Authentication",
+      "Token verification",
+      "Account discovery",
+      "Zone discovery",
+      "Create tunnel",
+      "Get run token",
+      "Set ingress configuration",
+      "List tunnels",
+      "Delete tunnel",
+      "DNS record CRUD",
+      "Manual curl examples"
+    ],
+    "body_excerpt": "All Cloudflare API v4 endpoints Burrow calls. Base URL https api.cloudflare.com client v4. Token verification GET user tokens verify. Create tunnel POST accounts id cfd_tunnel with config_src cloudflare. Set ingress PUT configurations. DNS records POST zones id dns_records with proxied true and ttl 1."
+  },
+  {
+    "url": "troubleshoot.html",
+    "title": "Troubleshooting — Burrow Docs",
+    "headings": [
+      "Reading the system log",
+      "Menu bar icon stays gray or shows red dot",
+      "Token invalid",
+      "Token missing scope",
+      "cloudflared not found",
+      "Tunnel starts then immediately exits",
+      "Run token stale",
+      "Port 22 not listening",
+      "Three failures in five minutes",
+      "DNS issues",
+      "CNAME returns NXDOMAIN",
+      "Tunnel does not recover after sleep",
+      "Launch at login toggle has no effect",
+      "Cloudflare API returning 429",
+      "Persistent keychain errors",
+      "Process.launch fails"
+    ],
+    "body_excerpt": "Read system log with log stream predicate subsystem com.krzemienski.burrow. Red dot means token invalid or revoked. cloudflared not found means binary missing from opt homebrew bin. Run token stale after tunnel deleted outside Burrow. CNAME NXDOMAIN means proxied false. SMAppService fails if app not in Applications."
+  }
+]

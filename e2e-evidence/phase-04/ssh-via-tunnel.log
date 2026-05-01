@@ -1,0 +1,24 @@
+=== P4-T2 End-to-End Tunnel + SSH ===
+Host: burrow-p4-1777595416.hack.ski
+2026-05-01T00:30:16Z
+
+[1] createTunnel
+  tunnel_id=d3a6ef22-067c-4072-8987-341c51770ddd  run_token_len=240
+[2] setIngress
+  success=true
+[3] createCNAME
+  record_id=83e4d6af059b72aa81cdb883c9182bf2 success=true
+[4] cloudflared tunnel run (real child Process)
+  cloudflared pid=3209
+[5] wait for Registered tunnel connection
+  ok after 2s
+[6] wait 20s for proxied DNS propagation
+[7] ssh nick@burrow-p4-1777595416.hack.ski through cloudflared access ssh
+websocket: bad handshake
+Connection closed by UNKNOWN port 65535
+  ssh_exit=
+[8] stop cloudflared
+  stopped
+[9] orphan check: 0 cloudflared processes still running
+[10] cleanup DNS+tunnel
+  cleanup done

@@ -1,0 +1,25 @@
+debug1: OpenSSH_10.2p1, LibreSSL 3.3.6
+debug1: Reading configuration data /Users/nick/.ssh/config
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 21: include /etc/ssh/ssh_config.d/* matched no files
+debug1: /etc/ssh/ssh_config line 54: Applying options for *
+debug1: Authenticator provider $SSH_SK_PROVIDER did not resolve; disabling
+debug1: Executing proxy command: exec /opt/homebrew/bin/cloudflared access tcp --hostname m4.hack.ski
+debug1: loaded pubkey from /Users/nick/.ssh/id_rsa: RSA SHA256:lIHUc7fMs1009HJRRiBtgTnjzHNoQKacP6H9YX2IP+o
+debug1: identity file /Users/nick/.ssh/id_rsa type 0
+debug1: no identity pubkey loaded from /Users/nick/.ssh/id_rsa
+debug1: no pubkey loaded from /Users/nick/.ssh/id_ecdsa
+debug1: identity file /Users/nick/.ssh/id_ecdsa type -1
+debug1: no identity pubkey loaded from /Users/nick/.ssh/id_ecdsa
+debug1: no pubkey loaded from /Users/nick/.ssh/id_ecdsa_sk
+debug1: identity file /Users/nick/.ssh/id_ecdsa_sk type -1
+debug1: no identity pubkey loaded from /Users/nick/.ssh/id_ecdsa_sk
+debug1: no pubkey loaded from /Users/nick/.ssh/id_ed25519
+debug1: identity file /Users/nick/.ssh/id_ed25519 type -1
+debug1: no identity pubkey loaded from /Users/nick/.ssh/id_ed25519
+debug1: no pubkey loaded from /Users/nick/.ssh/id_ed25519_sk
+debug1: identity file /Users/nick/.ssh/id_ed25519_sk type -1
+debug1: no identity pubkey loaded from /Users/nick/.ssh/id_ed25519_sk
+debug1: Local version string SSH-2.0-OpenSSH_10.2
+Connection timed out during banner exchange
+Connection to UNKNOWN port 65535 timed out

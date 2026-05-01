@@ -1,0 +1,2 @@
+91056 tee e2e-evidence/release-audit/post-quit-cloudflared.txt
+97687 /opt/homebrew/bin/cloudflared --no-autoupdate tunnel --loglevel info run --token [REDACTED-RUN-TOKEN]

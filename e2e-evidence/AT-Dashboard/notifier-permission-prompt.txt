@@ -1,0 +1,4 @@
+Timestamp               Ty Process[PID:TID]
+2026-04-30 22:34:56.677 E  Burrow[93024:295bd3] [com.krzemienski.burrow:lifecycle] UN authorization error: Notifications are not allowed for this application
+2026-04-30 22:35:07.582 E  Burrow[94139:29680f] [com.krzemienski.burrow:lifecycle] UN authorization error: Notifications are not allowed for this application
+2026-04-30 22:35:43.380 E  Burrow[97532:298911] [com.krzemienski.burrow:lifecycle] UN authorization error: Notifications are not allowed for this application

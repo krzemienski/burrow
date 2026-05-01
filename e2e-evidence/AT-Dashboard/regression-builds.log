@@ -1,0 +1,24 @@
+Build description signature: f94467a80bf488868de976bdc9822aef
+Build description path: /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/XCBuildData/f94467a80bf488868de976bdc9822aef.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk /Users/nick/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E251-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache
+    cd /Users/nick/Desktop/cf-tunnel-menubar/Burrow.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -o /Users/nick/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E251-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache
+
+** BUILD SUCCEEDED **
+
+    /usr/bin/codesign --force --sign - --entitlements /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/BurrowPersist.build/BurrowPersist.xcent --timestamp\=none --generate-entitlement-der /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/BurrowPersist
+
+RegisterExecutionPolicyException /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/BurrowPersist (in target 'BurrowPersist' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    builtin-RegisterExecutionPolicyException /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/BurrowPersist
+
+** BUILD SUCCEEDED **
+
+    /usr/bin/codesign --force --sign - --entitlements /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/BurrowE2E.build/BurrowE2E.xcent --timestamp\=none --generate-entitlement-der /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/BurrowE2E
+
+RegisterExecutionPolicyException /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/BurrowE2E (in target 'BurrowE2E' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    builtin-RegisterExecutionPolicyException /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/BurrowE2E
+
+** BUILD SUCCEEDED **
+

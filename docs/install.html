@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burrow Docs — Installation</title>
+  <link rel="stylesheet" href="assets/docs.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../site/index.html" class="nav-brand">
+      <img src="../site/assets/wordmark.svg" alt="Burrow" width="120" height="24">
+    </a>
+    <div class="nav-search">
+      <input type="search" id="search-input" placeholder="Search docs…" aria-label="Search documentation">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar">
+      <nav aria-label="Documentation navigation">
+        <ul class="sidebar-nav">
+          <li class="nav-section">Getting Started</li>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="install.html" class="active">Installation</a></li>
+          <li class="nav-section">Reference</li>
+          <li><a href="configure.html">Configuration</a></li>
+          <li><a href="api.html">Cloudflare API</a></li>
+          <li class="nav-section">Support</li>
+          <li><a href="troubleshoot.html">Troubleshooting</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content" id="main-content">
+      <h1>Installation</h1>
+      <p class="lead">From a notarized DMG to an active SSH tunnel in under five minutes.</p>
+
+      <h2 id="prereqs">Prerequisites</h2>
+      <p>Before opening the Burrow DMG, verify three things are in place:</p>
+      <ol>
+        <li><strong>macOS 13 Ventura or later.</strong> Burrow uses <code>MenuBarExtra</code> and <code>SMAppService</code>, both introduced in macOS 13.</li>
+        <li><strong>A Cloudflare account with an active zone.</strong> Your domain must be delegated to Cloudflare's nameservers and the zone status must be <em>Active</em> at <a href="https://dash.cloudflare.com" target="_blank" rel="noopener">dash.cloudflare.com</a>.</li>
+        <li><strong>cloudflared binary.</strong> Install with Homebrew: <code>brew install cloudflared</code>. Verify with <code>cloudflared --version</code> — Burrow expects 2024.x.x or later and parses the semver from the version string.</li>
+      </ol>
+
+      <h2 id="token">Step 1 — Create an API token</h2>
+      <p>Burrow requires a Cloudflare API token with exactly four permission scopes. The token is stored in your macOS Keychain (<code>kSecAttrAccessibleAfterFirstUnlockThisDeviceOnly</code>) and never written to disk, never logged, never stored in UserDefaults.</p>
+      <p>Go to <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener">dash.cloudflare.com/profile/api-tokens</a>, click <strong>Create Token</strong>, and choose <em>Custom token</em>. Add these four permissions:</p>
+
+      <ul class="scope-list">
+        <li class="scope-item">
+          <span class="scope-path">Account → Cloudflare Tunnel → Edit</span>
+          <button class="copy-btn" data-copy="Account → Cloudflare Tunnel → Edit" aria-label="Copy scope">Copy</button>
+        </li>
+        <li class="scope-item">
+          <span class="scope-path">Zone → DNS → Edit</span>
+          <button class="copy-btn" data-copy="Zone → DNS → Edit" aria-label="Copy scope">Copy</button>
+        </li>
+        <li class="scope-item">
+          <span class="scope-path">Zone → Zone → Read</span>
+          <button class="copy-btn" data-copy="Zone → Zone → Read" aria-label="Copy scope">Copy</button>
+        </li>
+        <li class="scope-item">
+          <span class="scope-path">Account → Account Settings → Read</span>
+          <button class="copy-btn" data-copy="Account → Account Settings → Read" aria-label="Copy scope">Copy</button>
+        </li>
+      </ul>
+
+      <p>Under <strong>Zone Resources</strong>, select the specific zone Burrow will manage. Set a TTL matching your security policy — 90 days is reasonable for a personal machine.</p>
+
+      <div class="callout callout-warn">
+        <strong>Token security.</strong> Copy the token immediately after creation — Cloudflare shows it only once. Never paste it into a terminal command that lands in shell history. Burrow's wizard accepts the token in a secure text field that does not echo to logs.
+      </div>
+
+      <h2 id="install-app">Step 2 — Install Burrow</h2>
+      <p>Download the latest notarized DMG from the <a href="https://github.com/krzemienski/burrow/releases" target="_blank" rel="noopener">Releases page</a>. Open the DMG and drag <strong>Burrow.app</strong> to <code>/Applications</code>.</p>
+
+      <div class="callout callout-note">
+        <strong>Must be in /Applications.</strong> Burrow registers a launch-at-login item via <code>SMAppService.mainApp.register()</code>. macOS requires the app bundle to be in <code>/Applications</code> for this API to succeed. Launching from Downloads or directly from the DMG will cause the launch-at-login toggle to fail silently.
+      </div>
+
+      <p>Launch Burrow from <code>/Applications</code>. No Dock icon appears — this is intentional (<code>LSUIElement = YES</code> in <code>Info.plist</code>). A gray network icon appears in your menu bar.</p>
+
+      <h2 id="wizard">Step 3 — Run the first-run wizard</h2>
+      <p>On first launch the setup wizard opens automatically and walks through seven steps:</p>
+      <ol>
+        <li><strong>Welcome.</strong> Summary of what Burrow will create on your Cloudflare account.</li>
+        <li><strong>API token.</strong> Paste your token. Burrow immediately calls <code>GET /user/tokens/verify</code> and checks all four required scopes. A scope diff is shown if any are missing — the wizard will not advance until all four pass.</li>
+        <li><strong>Account.</strong> If the token has access to multiple accounts, select the one containing your zone.</li>
+        <li><strong>Zone.</strong> Burrow lists all zones accessible to the token. Select the zone (e.g. <code>hack.ski</code>).</li>
+        <li><strong>Subdomain.</strong> Enter a hostname prefix (e.g. <code>m4</code>). Burrow checks for an existing CNAME at that FQDN and warns if one already exists.</li>
+        <li><strong>cloudflared check.</strong> Burrow runs <code>cloudflared --version</code>. If the binary is not found at any of the expected paths (<code>/opt/homebrew/bin</code>, <code>/usr/local/bin</code>, <code>/usr/bin</code>), this step shows the install command and waits for you to install and retry.</li>
+        <li><strong>Create tunnel.</strong> Burrow calls <code>POST /accounts/{id}/cfd_tunnel</code> with <code>config_src: "cloudflare"</code>, PUTs the ingress config with <code>ssh://localhost:22</code> and the mandatory catch-all <code>http_status:404</code>, creates the CNAME DNS record with <code>proxied: true</code>, stores the run token in Keychain, then starts <code>cloudflared tunnel run --token &lt;run_token&gt;</code>.</li>
+      </ol>
+
+      <p>When the wizard completes, the menu bar icon turns orange and the tunnel is live. Click the icon and select <strong>Copy SSH command</strong> to copy <code>ssh user@m4.hack.ski</code> to the clipboard.</p>
+
+      <h2 id="ssh-config">Step 4 — Configure your SSH client</h2>
+      <p>Cloudflare Tunnel routes SSH through the Cloudflare edge. Your client needs <code>cloudflared</code> installed and the following block in <code>~/.ssh/config</code>:</p>
+
+      <div class="code-wrap">
+        <pre><code>Host *.hack.ski
+  ProxyCommand cloudflared access ssh --hostname %h
+  StrictHostKeyChecking no</code></pre>
+        <button class="copy-btn" data-copy="Host *.hack.ski&#10;  ProxyCommand cloudflared access ssh --hostname %h&#10;  StrictHostKeyChecking no" aria-label="Copy SSH config">Copy</button>
+      </div>
+
+      <p>Replace <code>hack.ski</code> with your own zone. This block tells <code>ssh</code> to proxy all connections through <code>cloudflared access</code>, which handles the Cloudflare authentication handshake before the TCP connection reaches your Mac.</p>
+
+      <h2 id="verify">Step 5 — Verify from a different network</h2>
+      <p>Switch to a mobile hotspot (to confirm NAT traversal works), then run:</p>
+      <div class="code-wrap">
+        <pre><code>ssh nick@m4.hack.ski</code></pre>
+        <button class="copy-btn" data-copy="ssh nick@m4.hack.ski" aria-label="Copy SSH command">Copy</button>
+      </div>
+      <p>A successful connection confirms the tunnel, DNS record, ingress config, and SSH proxy are all working. Burrow's menu shows <em>tunnel up</em> with an uptime counter.</p>
+
+      <h2 id="login-item">Step 6 — Enable launch at login</h2>
+      <p>Open Burrow → Settings → General and toggle <strong>Launch at login</strong>. Burrow calls <code>SMAppService.mainApp.register()</code>. On the next reboot, Burrow starts automatically before any user interaction — the tunnel will be live within seconds of your Mac finishing its boot sequence.</p>
+    </main>
+  </div>
+
+  <script src="assets/search.js"></script>
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const text = btn.dataset.copy.replace(/&#10;/g, '\n');
+        navigator.clipboard.writeText(text).then(() => {
+          const orig = btn.textContent;
+          btn.textContent = 'Copied';
+          setTimeout(() => btn.textContent = orig, 2000);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

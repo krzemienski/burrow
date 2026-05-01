@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "errors": [],
+  "messages": [],
+  "result": {
+    "id": "1d8c31aa-104d-4ce8-8193-f078a2cc13cf",
+    "account_tag": "24080dbbce9363d385fac0500c121b85",
+    "created_at": "2026-05-01T01:48:49.870421Z",
+    "deleted_at": null,
+    "name": "burrow-e2e-1777600129",
+    "connections": [],
+    "conns_active_at": null,
+    "conns_inactive_at": "2026-05-01T01:48:49.870421Z",
+    "tun_type": "cfd_tunnel",
+    "metadata": {},
+    "status": "inactive",
+    "remote_config": true,
+    "config_src": "cloudflare",
+    "credentials_file": {
+      "AccountTag": "24080dbbce9363d385fac0500c121b85",
+      "TunnelID": "1d8c31aa-104d-4ce8-8193-f078a2cc13cf",
+      "TunnelName": "burrow-e2e-1777600129",
+      "TunnelSecret": "[REDACTED-TUNNEL-SECRET]"
+    },
+    "token": "[REDACTED-RUN-TOKEN]"
+  }
+}

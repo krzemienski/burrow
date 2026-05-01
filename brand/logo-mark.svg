@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Burrow logo mark">
+  <!-- Background: bean-1 #0E0907 -->
+  <rect width="64" height="64" rx="12" fill="#0E0907"/>
+  <!-- Horizon line: bean-4 #4A3526 -->
+  <line x1="8" y1="42" x2="56" y2="42" stroke="#4A3526" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Left stake -->
+  <line x1="8" y1="42" x2="8" y2="47" stroke="#4A3526" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Right stake -->
+  <line x1="56" y1="42" x2="56" y2="47" stroke="#4A3526" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- Arch: half-circle over horizon, orange #FF6A1A -->
+  <path d="M14 42 A18 18 0 0 1 50 42" fill="none" stroke="#FF6A1A" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Pulse dot: acid #C8FF1A — live tunnel indicator -->
+  <circle cx="32" cy="26" r="3.5" fill="#C8FF1A"/>
+</svg>

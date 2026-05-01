@@ -1,0 +1,124 @@
+name: Burrow
+options:
+  bundleIdPrefix: com.krzemienski
+  deploymentTarget:
+    macOS: "14.0"
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    ENABLE_HARDENED_RUNTIME: YES
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_IDENTITY: "-"
+    DEVELOPMENT_TEAM: ""
+    PRODUCT_NAME: Burrow
+    INFOPLIST_FILE: Resources/Info.plist
+    CODE_SIGN_ENTITLEMENTS: Resources/Burrow.entitlements
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    SWIFT_STRICT_CONCURRENCY: minimal
+
+packages:
+  KeychainAccess:
+    url: https://github.com/kishikawakatsumi/KeychainAccess.git
+    exactVersion: "4.2.2"
+
+targets:
+  Burrow:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+        excludes:
+          - "SmokeRunner/**"
+          - "PersistRunner/**"
+          - "BurrowE2E/**"
+    resources:
+      - path: Resources/Assets.xcassets
+    dependencies:
+      - package: KeychainAccess
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.krzemienski.burrow
+        INFOPLIST_FILE: Resources/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Resources/Burrow.entitlements
+
+  BurrowSmoke:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Sources/CloudflareAPI
+      - path: Sources/Logging
+      - path: Sources/SmokeRunner
+    settings:
+      base:
+        PRODUCT_NAME: BurrowSmoke
+        PRODUCT_BUNDLE_IDENTIFIER: com.krzemienski.burrow.smoke
+        SKIP_INSTALL: YES
+        CODE_SIGN_ENTITLEMENTS: ""
+        ENABLE_HARDENED_RUNTIME: NO
+        CODE_SIGN_IDENTITY: "-"
+
+  BurrowPersist:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Sources/Keychain
+      - path: Sources/Preferences
+      - path: Sources/Logging
+      - path: Sources/PersistRunner
+    settings:
+      base:
+        PRODUCT_NAME: BurrowPersist
+        PRODUCT_BUNDLE_IDENTIFIER: com.krzemienski.burrow.persist
+        SKIP_INSTALL: YES
+        CODE_SIGN_ENTITLEMENTS: ""
+        ENABLE_HARDENED_RUNTIME: NO
+        CODE_SIGN_IDENTITY: "-"
+
+  BurrowE2E:
+    type: tool
+    platform: macOS
+    sources:
+      - path: Sources/CloudflareAPI
+      - path: Sources/TunnelCore
+      - path: Sources/Keychain
+      - path: Sources/Preferences
+      - path: Sources/Logging
+      - path: Sources/BurrowE2E
+    settings:
+      base:
+        PRODUCT_NAME: BurrowE2E
+        PRODUCT_BUNDLE_IDENTIFIER: com.krzemienski.burrow.e2e
+        SKIP_INSTALL: YES
+        CODE_SIGN_ENTITLEMENTS: ""
+        ENABLE_HARDENED_RUNTIME: NO
+        CODE_SIGN_IDENTITY: "-"
+
+schemes:
+  Burrow:
+    build:
+      targets:
+        Burrow: all
+    run:
+      config: Debug
+  BurrowSmoke:
+    build:
+      targets:
+        BurrowSmoke: all
+    run:
+      config: Debug
+  BurrowPersist:
+    build:
+      targets:
+        BurrowPersist: all
+    run:
+      config: Debug
+  BurrowE2E:
+    build:
+      targets:
+        BurrowE2E: all
+    run:
+      config: Debug

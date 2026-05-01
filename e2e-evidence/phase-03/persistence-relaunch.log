@@ -1,0 +1,33 @@
+=== Phase 3 Persistence Round-Trip ===
+Date: 2026-05-01T00:22:13Z
+
+--- 1) WRITE (process A) ---
+[WRITE] begin
+[WRITE] ok api-token len=24
+[WRITE] ok run-token tunnelID=test-tunnel-uuid-aaaa-bbbb-cccc-dddddddddddd len=26
+[WRITE] ok prefs subdomain=m4-test-persist port=2222 user=nick
+[WROTE] all 5 keys persisted
+--- write exit: 0 ---
+
+--- 2) VERIFY (process B — separate invocation) ---
+[READ] begin (fresh process)
+[READ] api-token MATCH
+[READ] run-token MATCH
+[READ] subdomain MATCH
+[READ] localPort MATCH
+[READ] sshUsername MATCH
+[READ-MATCH] PASS — all 5 round-trip values match
+--- verify exit: 0 ---
+
+--- 3) Independent shell verification of UserDefaults ---
+m4-test-persist
+2222
+nick
+
+--- 4) Independent shell verification of Keychain ---
+cfut_test_persist_burrow
+
+--- 5) CLEANUP ---
+[CLEANUP] begin
+[CLEANUP] ok
+--- cleanup exit: 0 ---

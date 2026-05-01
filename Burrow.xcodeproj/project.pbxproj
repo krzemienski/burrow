@@ -1,0 +1,995 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02A737440ACEB579F1C7E8CE /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4317CB6BA7C74536D583223 /* Tunnel.swift */; };
+		050146CF0E09D8F89DDDFEE4 /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E9583CB793081619F39 /* PreferencesStore.swift */; };
+		074E1D23D92CEA38246B3B77 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934F771E0DF0D82897E5B8F7 /* main.swift */; };
+		09FAB39356CC77A65D5C9569 /* TokenVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7F41F0AE8AA2DC1435428 /* TokenVerify.swift */; };
+		0BB64AFBF2735F535188DEEE /* CloudflaredManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2770F8ABDF8DD16D413B9E2 /* CloudflaredManager.swift */; };
+		19E64AE315B0AECB3FD865FB /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F576B3B15B936757813D74B /* Account.swift */; };
+		1AFE292E683C82F005C04E4B /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F576B3B15B936757813D74B /* Account.swift */; };
+		1E732CDAF64A91FF2855C745 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1D7C2B14AAC563C8B68A965 /* Notifier.swift */; };
+		242D33D8300E113978AF5C50 /* BrandTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1376A846691D67F259F3732A /* BrandTokens.swift */; };
+		26617D4ACE19A4D780F2DED9 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC6024EED3128535B4ABC /* KeychainService.swift */; };
+		2B1F3EA424734DCAF3291B50 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA2E8305C4FC445B9784B1B /* Endpoints.swift */; };
+		2BE6CF1408176399C77D7239 /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E9583CB793081619F39 /* PreferencesStore.swift */; };
+		30D62EFE9993E96BF45F8D21 /* PrefsTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E7C426FDC156CDD8DBA754 /* PrefsTokenStore.swift */; };
+		3196250D6B201CD8DDB733D6 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CA46A3D62D10037BDE5084 /* DashboardView.swift */; };
+		32846B5F85776AD7FA9EEB95 /* PowerObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6125ECD951BCB507778AB03E /* PowerObserver.swift */; };
+		34B2C772DE30251DD6FBEDFC /* IngressConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D367A552D3E8A05B413D9A /* IngressConfigBuilder.swift */; };
+		36ABED06EC70FC5C88E0B446 /* TokenVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7F41F0AE8AA2DC1435428 /* TokenVerify.swift */; };
+		37E3058EC117E597E3B269B7 /* APIEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DDA6CDDF5C14B229DA3B9 /* APIEnvelope.swift */; };
+		38DD230963AA9E82704998D9 /* DNSRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FABFBBE560ACFEB637989F2 /* DNSRecord.swift */; };
+		3954223A1AA63DFE3102CDBA /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = AA92976A5B9D858BD2FEA63F /* KeychainAccess */; };
+		3AD07AC82B0351CD9A2B20C2 /* PrefsTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E7C426FDC156CDD8DBA754 /* PrefsTokenStore.swift */; };
+		3E646B521D14BEF0EF94EB02 /* MetricsClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CABB0EEF93C18C49656707C /* MetricsClient.swift */; };
+		41A69E041293EF46EB45C223 /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611802BB8D11B95D7B70CDA4 /* Zone.swift */; };
+		4C78CEAA2C2A66645ECFFEE8 /* CFTunnelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1198F0D1E840B1B52A2C8AC3 /* CFTunnelApp.swift */; };
+		5A0C083538AF40B556721C23 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F576B3B15B936757813D74B /* Account.swift */; };
+		5A65D117ED611DD70659FD3E /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F552E9583CB793081619F39 /* PreferencesStore.swift */; };
+		5B7CE328576AD191E644D439 /* TokenVerify.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C7F41F0AE8AA2DC1435428 /* TokenVerify.swift */; };
+		5F7432E76D6E3ACA71DA4E11 /* BinaryLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B46DC8A648B407439E0EF6 /* BinaryLocator.swift */; };
+		60ED006339919A9CE60D1643 /* CloudflareError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B34E5BE67C0261269D132 /* CloudflareError.swift */; };
+		646D882DBF61DC08DCFC73EB /* DNSRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FABFBBE560ACFEB637989F2 /* DNSRecord.swift */; };
+		6B510A570634345D86BCDFF1 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA2E8305C4FC445B9784B1B /* Endpoints.swift */; };
+		734446378D77089111CDE240 /* SmokeRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DA554ECD569DFDA075487D /* SmokeRunner.swift */; };
+		7654CA6DAC121ED4EB681E75 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2864A3D23A4B91DC70388D1 /* Log.swift */; };
+		7878176A16CB80075125979F /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D4072071071A776CD35EF5 /* QRCode.swift */; };
+		7C58ADA0FE113FBDB8B140AF /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2864A3D23A4B91DC70388D1 /* Log.swift */; };
+		821D7F76C66816BC6457AF53 /* CloudflaredCheckStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA77AEC94C23CFB6583263E7 /* CloudflaredCheckStep.swift */; };
+		83BB5D4A55A27FD44C9B21A4 /* GeneralTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851F795E95363C16C22E9066 /* GeneralTab.swift */; };
+		89DEDC6D9481EE2824A2D9DE /* CloudflaredManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2770F8ABDF8DD16D413B9E2 /* CloudflaredManager.swift */; };
+		8A349F32014A42AFE74186BE /* APIEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DDA6CDDF5C14B229DA3B9 /* APIEnvelope.swift */; };
+		8E8B5C063428D5E3D66FF49F /* CloudflareError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B34E5BE67C0261269D132 /* CloudflareError.swift */; };
+		8EEC280A552A4ED835498F51 /* DNSTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2913062440F4B52BD4992F19 /* DNSTab.swift */; };
+		8F0E8068A6AF4D6FF5F5064E /* TokenStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE58CAD773C0B45ED9DF3EA /* TokenStep.swift */; };
+		91B97E5AEC377A979A1092A5 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC6024EED3128535B4ABC /* KeychainService.swift */; };
+		9B545AB6F26ED987066BB933 /* AccessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB45F60308FED17593BFD4F /* AccessApp.swift */; };
+		9D9B27847D2CD54DFBE683D3 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4317CB6BA7C74536D583223 /* Tunnel.swift */; };
+		9DDD3F591AC78CC2D478A507 /* PrefsTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E7C426FDC156CDD8DBA754 /* PrefsTokenStore.swift */; };
+		A73EA28D21C2828B19838745 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463BDC840100AFFDC6D44973 /* MenuBarContentView.swift */; };
+		A79C2FEB03F8ED962F51F3FB /* CloudflareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533178F4DDCB3A3EB3A0111 /* CloudflareClient.swift */; };
+		A8905542183231A20C975C17 /* BinaryLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6B46DC8A648B407439E0EF6 /* BinaryLocator.swift */; };
+		A96333C4873BCED739FB1781 /* SelfTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966041082BEA00E4264C7633 /* SelfTest.swift */; };
+		AE0F5BD48E0FF5A9816C7D7B /* TunnelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D4BD8950B41C1DA5E3963F /* TunnelState.swift */; };
+		AFFF551D1F81B1683C6D5878 /* DNSRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FABFBBE560ACFEB637989F2 /* DNSRecord.swift */; };
+		B0E56E50736DD29CA0DDDBA6 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC6024EED3128535B4ABC /* KeychainService.swift */; };
+		B2ECAC16E5A9E21022C572AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC6A180F5C87AF2AD1B58D /* AppDelegate.swift */; };
+		B5699040A14B35B8DF3955C9 /* WizardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A88E24125CB5C61884F2E4 /* WizardCoordinator.swift */; };
+		B5AD081C7E796A83FD6F81EB /* WelcomeStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = F079DA66002A89BA9AC67F03 /* WelcomeStep.swift */; };
+		B5B13E737D1E7A4C8FC2E0FF /* DocsDeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B60AA71BAF2EC9BAD47A94 /* DocsDeepLink.swift */; };
+		B92FE8217BDE9064A2EC65F1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8CA8E6AF33BC3F13388EF8 /* SettingsView.swift */; };
+		BE0E497E66D63FBB256B5BD6 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139856EB34509705DE15EA65 /* NetworkMonitor.swift */; };
+		C06257BCC219E6BECD20F41A /* CloudflareTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE4F12D32D4D16C13C0F918 /* CloudflareTab.swift */; };
+		C1BA621581B101FF73F013B6 /* CloudflareError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B34E5BE67C0261269D132 /* CloudflareError.swift */; };
+		C28BCACC3FD6132F6872DBC1 /* AccessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB45F60308FED17593BFD4F /* AccessApp.swift */; };
+		C54761178F420F2CE64B920E /* AdvancedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23DCC50234D11913B8187F38 /* AdvancedTab.swift */; };
+		CAB36EE55E511A60A5F70A69 /* CreateTunnelStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF4360910574E5CB9FC2D346 /* CreateTunnelStep.swift */; };
+		CC352262C5684B0D5934FB53 /* AccountZoneStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5F7D85C095D71B9DE8C189 /* AccountZoneStep.swift */; };
+		CCDD84C3670E3CFCE62B2A54 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2864A3D23A4B91DC70388D1 /* Log.swift */; };
+		D1C1D3C5E518FF040DAA383C /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2864A3D23A4B91DC70388D1 /* Log.swift */; };
+		D35FECE50D4F0E25CC0EA47F /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611802BB8D11B95D7B70CDA4 /* Zone.swift */; };
+		D814046B3D556C2B11B4D786 /* DoneStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEB39FA7EA636AE91C5D868 /* DoneStep.swift */; };
+		D8922ABC8E1E7CEA09F79734 /* CloudflareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533178F4DDCB3A3EB3A0111 /* CloudflareClient.swift */; };
+		DCFD7A706021826A82264823 /* CloudflareClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533178F4DDCB3A3EB3A0111 /* CloudflareClient.swift */; };
+		E50B3863FD3A0615DF06607E /* PersistRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE0EE4354544556179067A7 /* PersistRunner.swift */; };
+		E5295425908F68649B637E71 /* AccessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB45F60308FED17593BFD4F /* AccessApp.swift */; };
+		E998CAC7F8E5CA8D11C7BE74 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA2E8305C4FC445B9784B1B /* Endpoints.swift */; };
+		EA5F558EA4E29FC05BD4E389 /* DashboardInlineEditors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D533F4E938E78005C85883E /* DashboardInlineEditors.swift */; };
+		EC12F883DA3E0F2429DD14BB /* APIEnvelope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9DDA6CDDF5C14B229DA3B9 /* APIEnvelope.swift */; };
+		EDF678FC434A6859DE966478 /* Zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611802BB8D11B95D7B70CDA4 /* Zone.swift */; };
+		F0FADEDCA225C57C5305531A /* TunnelTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F24DB447636F7167464752D /* TunnelTab.swift */; };
+		F21B307AA120A23EF931DAFE /* TunnelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D4BD8950B41C1DA5E3963F /* TunnelState.swift */; };
+		F4C0CB61D6F91361DA4CB4A6 /* SubdomainStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C7084A259EB6902A32E401 /* SubdomainStep.swift */; };
+		FCC903A6EA297279D88A8C88 /* IngressConfigBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6D367A552D3E8A05B413D9A /* IngressConfigBuilder.swift */; };
+		FD1A1DD1B7C65C6BC9C8D09A /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4317CB6BA7C74536D583223 /* Tunnel.swift */; };
+		FF024D0958DC26FDEAFD315A /* TunnelStateObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11ECD9E6DAB9C5C4C7ED8382 /* TunnelStateObserver.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1198F0D1E840B1B52A2C8AC3 /* CFTunnelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTunnelApp.swift; sourceTree = "<group>"; };
+		11ECD9E6DAB9C5C4C7ED8382 /* TunnelStateObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelStateObserver.swift; sourceTree = "<group>"; };
+		1376A846691D67F259F3732A /* BrandTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTokens.swift; sourceTree = "<group>"; };
+		139856EB34509705DE15EA65 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		1CE4F12D32D4D16C13C0F918 /* CloudflareTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudflareTab.swift; sourceTree = "<group>"; };
+		1DE58CAD773C0B45ED9DF3EA /* TokenStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenStep.swift; sourceTree = "<group>"; };
+		23DCC50234D11913B8187F38 /* AdvancedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTab.swift; sourceTree = "<group>"; };
+		2913062440F4B52BD4992F19 /* DNSTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSTab.swift; sourceTree = "<group>"; };
+		2C9DDA6CDDF5C14B229DA3B9 /* APIEnvelope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEnvelope.swift; sourceTree = "<group>"; };
+		2D533F4E938E78005C85883E /* DashboardInlineEditors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardInlineEditors.swift; sourceTree = "<group>"; };
+		33C7084A259EB6902A32E401 /* SubdomainStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubdomainStep.swift; sourceTree = "<group>"; };
+		35B60AA71BAF2EC9BAD47A94 /* DocsDeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocsDeepLink.swift; sourceTree = "<group>"; };
+		3CABB0EEF93C18C49656707C /* MetricsClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsClient.swift; sourceTree = "<group>"; };
+		3F552E9583CB793081619F39 /* PreferencesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesStore.swift; sourceTree = "<group>"; };
+		463BDC840100AFFDC6D44973 /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
+		46DA554ECD569DFDA075487D /* SmokeRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokeRunner.swift; sourceTree = "<group>"; };
+		4B5F7D85C095D71B9DE8C189 /* AccountZoneStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountZoneStep.swift; sourceTree = "<group>"; };
+		4EE8B44A5855F09B39B8200B /* BurrowE2E */ = {isa = PBXFileReference; includeInIndex = 0; path = BurrowE2E; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FABFBBE560ACFEB637989F2 /* DNSRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSRecord.swift; sourceTree = "<group>"; };
+		59D4BD8950B41C1DA5E3963F /* TunnelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelState.swift; sourceTree = "<group>"; };
+		611802BB8D11B95D7B70CDA4 /* Zone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zone.swift; sourceTree = "<group>"; };
+		6125ECD951BCB507778AB03E /* PowerObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerObserver.swift; sourceTree = "<group>"; };
+		615B34E5BE67C0261269D132 /* CloudflareError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudflareError.swift; sourceTree = "<group>"; };
+		6C1E79F2076F885F1764B2C3 /* BurrowPersist */ = {isa = PBXFileReference; includeInIndex = 0; path = BurrowPersist; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EA2E8305C4FC445B9784B1B /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		6FE0EE4354544556179067A7 /* PersistRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistRunner.swift; sourceTree = "<group>"; };
+		7CB45F60308FED17593BFD4F /* AccessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessApp.swift; sourceTree = "<group>"; };
+		7F576B3B15B936757813D74B /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		851F795E95363C16C22E9066 /* GeneralTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTab.swift; sourceTree = "<group>"; };
+		86CC6A180F5C87AF2AD1B58D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		898BC6024EED3128535B4ABC /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		91D4072071071A776CD35EF5 /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		934F771E0DF0D82897E5B8F7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		966041082BEA00E4264C7633 /* SelfTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfTest.swift; sourceTree = "<group>"; };
+		9B8CA8E6AF33BC3F13388EF8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		9F24DB447636F7167464752D /* TunnelTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TunnelTab.swift; sourceTree = "<group>"; };
+		A2770F8ABDF8DD16D413B9E2 /* CloudflaredManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudflaredManager.swift; sourceTree = "<group>"; };
+		A2864A3D23A4B91DC70388D1 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		A3C7F41F0AE8AA2DC1435428 /* TokenVerify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenVerify.swift; sourceTree = "<group>"; };
+		AFDE0CEEEC7009930D26086C /* BurrowSmoke */ = {isa = PBXFileReference; includeInIndex = 0; path = BurrowSmoke; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFEB39FA7EA636AE91C5D868 /* DoneStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoneStep.swift; sourceTree = "<group>"; };
+		B4317CB6BA7C74536D583223 /* Tunnel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tunnel.swift; sourceTree = "<group>"; };
+		B533178F4DDCB3A3EB3A0111 /* CloudflareClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudflareClient.swift; sourceTree = "<group>"; };
+		C8CA46A3D62D10037BDE5084 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		C8E7C426FDC156CDD8DBA754 /* PrefsTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsTokenStore.swift; sourceTree = "<group>"; };
+		DA77AEC94C23CFB6583263E7 /* CloudflaredCheckStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudflaredCheckStep.swift; sourceTree = "<group>"; };
+		E1D7C2B14AAC563C8B68A965 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		E6B46DC8A648B407439E0EF6 /* BinaryLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryLocator.swift; sourceTree = "<group>"; };
+		EF4360910574E5CB9FC2D346 /* CreateTunnelStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTunnelStep.swift; sourceTree = "<group>"; };
+		F079DA66002A89BA9AC67F03 /* WelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeStep.swift; sourceTree = "<group>"; };
+		F1A88E24125CB5C61884F2E4 /* WizardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WizardCoordinator.swift; sourceTree = "<group>"; };
+		F6D367A552D3E8A05B413D9A /* IngressConfigBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngressConfigBuilder.swift; sourceTree = "<group>"; };
+		F9BF37033FB6A9A045F82E98 /* Burrow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Burrow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB3270B2F44807419E6DF2F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3954223A1AA63DFE3102CDBA /* KeychainAccess in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		011C37E7D1355E44E87C0D57 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				E1D7C2B14AAC563C8B68A965 /* Notifier.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		0CFAC2924BFB402E468D7A3C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CB45F60308FED17593BFD4F /* AccessApp.swift */,
+				7F576B3B15B936757813D74B /* Account.swift */,
+				2C9DDA6CDDF5C14B229DA3B9 /* APIEnvelope.swift */,
+				4FABFBBE560ACFEB637989F2 /* DNSRecord.swift */,
+				A3C7F41F0AE8AA2DC1435428 /* TokenVerify.swift */,
+				B4317CB6BA7C74536D583223 /* Tunnel.swift */,
+				611802BB8D11B95D7B70CDA4 /* Zone.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1259511A9570EF68B22AC8B8 /* BurrowE2E */ = {
+			isa = PBXGroup;
+			children = (
+				934F771E0DF0D82897E5B8F7 /* main.swift */,
+			);
+			name = BurrowE2E;
+			path = Sources/BurrowE2E;
+			sourceTree = "<group>";
+		};
+		1A7522FFF420D479DC8FE201 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F9BF37033FB6A9A045F82E98 /* Burrow.app */,
+				4EE8B44A5855F09B39B8200B /* BurrowE2E */,
+				6C1E79F2076F885F1764B2C3 /* BurrowPersist */,
+				AFDE0CEEEC7009930D26086C /* BurrowSmoke */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		38D8E88F82205C1752FB0ACA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1376A846691D67F259F3732A /* BrandTokens.swift */,
+				35B60AA71BAF2EC9BAD47A94 /* DocsDeepLink.swift */,
+				91D4072071071A776CD35EF5 /* QRCode.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		40E49A2FF22E7383E714C300 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				139856EB34509705DE15EA65 /* NetworkMonitor.swift */,
+				6125ECD951BCB507778AB03E /* PowerObserver.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		4A40A7BD2E2D48C39B0BA749 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				3F552E9583CB793081619F39 /* PreferencesStore.swift */,
+				C8E7C426FDC156CDD8DBA754 /* PrefsTokenStore.swift */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		59EBA9EE55E818C5E068E9AC /* MenuBar */ = {
+			isa = PBXGroup;
+			children = (
+				463BDC840100AFFDC6D44973 /* MenuBarContentView.swift */,
+			);
+			path = MenuBar;
+			sourceTree = "<group>";
+		};
+		6760473E38FD0853F29D021B /* SmokeRunner */ = {
+			isa = PBXGroup;
+			children = (
+				46DA554ECD569DFDA075487D /* SmokeRunner.swift */,
+			);
+			name = SmokeRunner;
+			path = Sources/SmokeRunner;
+			sourceTree = "<group>";
+		};
+		792BA9DA2E402FA5F34B6C42 /* Metrics */ = {
+			isa = PBXGroup;
+			children = (
+				3CABB0EEF93C18C49656707C /* MetricsClient.swift */,
+			);
+			path = Metrics;
+			sourceTree = "<group>";
+		};
+		79B96D942057E16DDB36AA8E /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				898BC6024EED3128535B4ABC /* KeychainService.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		7AA2853FD142D3B2950CAA69 /* FirstRun */ = {
+			isa = PBXGroup;
+			children = (
+				F1A88E24125CB5C61884F2E4 /* WizardCoordinator.swift */,
+				F3F365E752D0849FFE8A903C /* Steps */,
+			);
+			path = FirstRun;
+			sourceTree = "<group>";
+		};
+		8E135AFF5C1F263388AE7669 = {
+			isa = PBXGroup;
+			children = (
+				1259511A9570EF68B22AC8B8 /* BurrowE2E */,
+				D9CE7D925BE0549144BB25EC /* PersistRunner */,
+				6760473E38FD0853F29D021B /* SmokeRunner */,
+				AD017B973B937DC3A0B35ADB /* Sources */,
+				1A7522FFF420D479DC8FE201 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8F90969DEFEE1655E289A7BA /* Diagnostics */ = {
+			isa = PBXGroup;
+			children = (
+				966041082BEA00E4264C7633 /* SelfTest.swift */,
+			);
+			path = Diagnostics;
+			sourceTree = "<group>";
+		};
+		AD017B973B937DC3A0B35ADB /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D12EF5055449D92CE755CB3D /* App */,
+				F126ABCD1EB0F4401C282841 /* CloudflareAPI */,
+				8F90969DEFEE1655E289A7BA /* Diagnostics */,
+				79B96D942057E16DDB36AA8E /* Keychain */,
+				B6C238443330E198C12E4E72 /* Logging */,
+				792BA9DA2E402FA5F34B6C42 /* Metrics */,
+				40E49A2FF22E7383E714C300 /* Networking */,
+				011C37E7D1355E44E87C0D57 /* Notifications */,
+				4A40A7BD2E2D48C39B0BA749 /* Preferences */,
+				DBA98C3FA776E645957652C7 /* TunnelCore */,
+				D0DE4D796E508C2FD0227195 /* UI */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		B6C238443330E198C12E4E72 /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				A2864A3D23A4B91DC70388D1 /* Log.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		C66E9E8F32FBD33A5386E69D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				23DCC50234D11913B8187F38 /* AdvancedTab.swift */,
+				1CE4F12D32D4D16C13C0F918 /* CloudflareTab.swift */,
+				2913062440F4B52BD4992F19 /* DNSTab.swift */,
+				851F795E95363C16C22E9066 /* GeneralTab.swift */,
+				9B8CA8E6AF33BC3F13388EF8 /* SettingsView.swift */,
+				9F24DB447636F7167464752D /* TunnelTab.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		D0DE4D796E508C2FD0227195 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FCC1380E67148062AFE05809 /* Dashboard */,
+				7AA2853FD142D3B2950CAA69 /* FirstRun */,
+				38D8E88F82205C1752FB0ACA /* Helpers */,
+				59EBA9EE55E818C5E068E9AC /* MenuBar */,
+				C66E9E8F32FBD33A5386E69D /* Settings */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		D12EF5055449D92CE755CB3D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				86CC6A180F5C87AF2AD1B58D /* AppDelegate.swift */,
+				1198F0D1E840B1B52A2C8AC3 /* CFTunnelApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		D9CE7D925BE0549144BB25EC /* PersistRunner */ = {
+			isa = PBXGroup;
+			children = (
+				6FE0EE4354544556179067A7 /* PersistRunner.swift */,
+			);
+			name = PersistRunner;
+			path = Sources/PersistRunner;
+			sourceTree = "<group>";
+		};
+		DBA98C3FA776E645957652C7 /* TunnelCore */ = {
+			isa = PBXGroup;
+			children = (
+				E6B46DC8A648B407439E0EF6 /* BinaryLocator.swift */,
+				A2770F8ABDF8DD16D413B9E2 /* CloudflaredManager.swift */,
+				F6D367A552D3E8A05B413D9A /* IngressConfigBuilder.swift */,
+				59D4BD8950B41C1DA5E3963F /* TunnelState.swift */,
+			);
+			path = TunnelCore;
+			sourceTree = "<group>";
+		};
+		F126ABCD1EB0F4401C282841 /* CloudflareAPI */ = {
+			isa = PBXGroup;
+			children = (
+				B533178F4DDCB3A3EB3A0111 /* CloudflareClient.swift */,
+				615B34E5BE67C0261269D132 /* CloudflareError.swift */,
+				6EA2E8305C4FC445B9784B1B /* Endpoints.swift */,
+				0CFAC2924BFB402E468D7A3C /* Models */,
+			);
+			path = CloudflareAPI;
+			sourceTree = "<group>";
+		};
+		F3F365E752D0849FFE8A903C /* Steps */ = {
+			isa = PBXGroup;
+			children = (
+				4B5F7D85C095D71B9DE8C189 /* AccountZoneStep.swift */,
+				DA77AEC94C23CFB6583263E7 /* CloudflaredCheckStep.swift */,
+				EF4360910574E5CB9FC2D346 /* CreateTunnelStep.swift */,
+				AFEB39FA7EA636AE91C5D868 /* DoneStep.swift */,
+				33C7084A259EB6902A32E401 /* SubdomainStep.swift */,
+				1DE58CAD773C0B45ED9DF3EA /* TokenStep.swift */,
+				F079DA66002A89BA9AC67F03 /* WelcomeStep.swift */,
+			);
+			path = Steps;
+			sourceTree = "<group>";
+		};
+		FCC1380E67148062AFE05809 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				2D533F4E938E78005C85883E /* DashboardInlineEditors.swift */,
+				C8CA46A3D62D10037BDE5084 /* DashboardView.swift */,
+				11ECD9E6DAB9C5C4C7ED8382 /* TunnelStateObserver.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		392F59B1B4D81075AA6D4ACB /* BurrowE2E */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 08B0CCD679B49C553FEE1DF3 /* Build configuration list for PBXNativeTarget "BurrowE2E" */;
+			buildPhases = (
+				00BC18E6A1D67BEAFC7F5637 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BurrowE2E;
+			packageProductDependencies = (
+			);
+			productName = BurrowE2E;
+			productReference = 4EE8B44A5855F09B39B8200B /* BurrowE2E */;
+			productType = "com.apple.product-type.tool";
+		};
+		DE17509C4FFEDA6D004EE134 /* Burrow */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D016279BE243D15A85A2873C /* Build configuration list for PBXNativeTarget "Burrow" */;
+			buildPhases = (
+				346C5FE4FBD6BED6D68CA9A0 /* Sources */,
+				EB3270B2F44807419E6DF2F1 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Burrow;
+			packageProductDependencies = (
+				AA92976A5B9D858BD2FEA63F /* KeychainAccess */,
+			);
+			productName = Burrow;
+			productReference = F9BF37033FB6A9A045F82E98 /* Burrow.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F26678A4F47CEFF030274322 /* BurrowSmoke */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5EAFE43D2E9BFCE1E1C10A91 /* Build configuration list for PBXNativeTarget "BurrowSmoke" */;
+			buildPhases = (
+				4823B8F2A4DD4055E51CBCB0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BurrowSmoke;
+			packageProductDependencies = (
+			);
+			productName = BurrowSmoke;
+			productReference = AFDE0CEEEC7009930D26086C /* BurrowSmoke */;
+			productType = "com.apple.product-type.tool";
+		};
+		F579166963D473C24348AA96 /* BurrowPersist */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93592F18CB02794C4D13EA94 /* Build configuration list for PBXNativeTarget "BurrowPersist" */;
+			buildPhases = (
+				698823C0E938597C1F4A72A0 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BurrowPersist;
+			packageProductDependencies = (
+			);
+			productName = BurrowPersist;
+			productReference = 6C1E79F2076F885F1764B2C3 /* BurrowPersist */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF7FC45A13AE71B8862BCB3D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					392F59B1B4D81075AA6D4ACB = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					DE17509C4FFEDA6D004EE134 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					F26678A4F47CEFF030274322 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					F579166963D473C24348AA96 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 752C48E9ABB0504D690114F0 /* Build configuration list for PBXProject "Burrow" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 8E135AFF5C1F263388AE7669;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				24504FE13F33645CA69CFE0F /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1A7522FFF420D479DC8FE201 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE17509C4FFEDA6D004EE134 /* Burrow */,
+				392F59B1B4D81075AA6D4ACB /* BurrowE2E */,
+				F579166963D473C24348AA96 /* BurrowPersist */,
+				F26678A4F47CEFF030274322 /* BurrowSmoke */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00BC18E6A1D67BEAFC7F5637 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC12F883DA3E0F2429DD14BB /* APIEnvelope.swift in Sources */,
+				C28BCACC3FD6132F6872DBC1 /* AccessApp.swift in Sources */,
+				19E64AE315B0AECB3FD865FB /* Account.swift in Sources */,
+				A8905542183231A20C975C17 /* BinaryLocator.swift in Sources */,
+				DCFD7A706021826A82264823 /* CloudflareClient.swift in Sources */,
+				60ED006339919A9CE60D1643 /* CloudflareError.swift in Sources */,
+				0BB64AFBF2735F535188DEEE /* CloudflaredManager.swift in Sources */,
+				AFFF551D1F81B1683C6D5878 /* DNSRecord.swift in Sources */,
+				6B510A570634345D86BCDFF1 /* Endpoints.swift in Sources */,
+				34B2C772DE30251DD6FBEDFC /* IngressConfigBuilder.swift in Sources */,
+				91B97E5AEC377A979A1092A5 /* KeychainService.swift in Sources */,
+				D1C1D3C5E518FF040DAA383C /* Log.swift in Sources */,
+				5A65D117ED611DD70659FD3E /* PreferencesStore.swift in Sources */,
+				30D62EFE9993E96BF45F8D21 /* PrefsTokenStore.swift in Sources */,
+				5B7CE328576AD191E644D439 /* TokenVerify.swift in Sources */,
+				9D9B27847D2CD54DFBE683D3 /* Tunnel.swift in Sources */,
+				F21B307AA120A23EF931DAFE /* TunnelState.swift in Sources */,
+				EDF678FC434A6859DE966478 /* Zone.swift in Sources */,
+				074E1D23D92CEA38246B3B77 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		346C5FE4FBD6BED6D68CA9A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				37E3058EC117E597E3B269B7 /* APIEnvelope.swift in Sources */,
+				E5295425908F68649B637E71 /* AccessApp.swift in Sources */,
+				5A0C083538AF40B556721C23 /* Account.swift in Sources */,
+				CC352262C5684B0D5934FB53 /* AccountZoneStep.swift in Sources */,
+				C54761178F420F2CE64B920E /* AdvancedTab.swift in Sources */,
+				B2ECAC16E5A9E21022C572AC /* AppDelegate.swift in Sources */,
+				5F7432E76D6E3ACA71DA4E11 /* BinaryLocator.swift in Sources */,
+				242D33D8300E113978AF5C50 /* BrandTokens.swift in Sources */,
+				4C78CEAA2C2A66645ECFFEE8 /* CFTunnelApp.swift in Sources */,
+				A79C2FEB03F8ED962F51F3FB /* CloudflareClient.swift in Sources */,
+				8E8B5C063428D5E3D66FF49F /* CloudflareError.swift in Sources */,
+				C06257BCC219E6BECD20F41A /* CloudflareTab.swift in Sources */,
+				821D7F76C66816BC6457AF53 /* CloudflaredCheckStep.swift in Sources */,
+				89DEDC6D9481EE2824A2D9DE /* CloudflaredManager.swift in Sources */,
+				CAB36EE55E511A60A5F70A69 /* CreateTunnelStep.swift in Sources */,
+				38DD230963AA9E82704998D9 /* DNSRecord.swift in Sources */,
+				8EEC280A552A4ED835498F51 /* DNSTab.swift in Sources */,
+				EA5F558EA4E29FC05BD4E389 /* DashboardInlineEditors.swift in Sources */,
+				3196250D6B201CD8DDB733D6 /* DashboardView.swift in Sources */,
+				B5B13E737D1E7A4C8FC2E0FF /* DocsDeepLink.swift in Sources */,
+				D814046B3D556C2B11B4D786 /* DoneStep.swift in Sources */,
+				2B1F3EA424734DCAF3291B50 /* Endpoints.swift in Sources */,
+				83BB5D4A55A27FD44C9B21A4 /* GeneralTab.swift in Sources */,
+				FCC903A6EA297279D88A8C88 /* IngressConfigBuilder.swift in Sources */,
+				26617D4ACE19A4D780F2DED9 /* KeychainService.swift in Sources */,
+				CCDD84C3670E3CFCE62B2A54 /* Log.swift in Sources */,
+				A73EA28D21C2828B19838745 /* MenuBarContentView.swift in Sources */,
+				3E646B521D14BEF0EF94EB02 /* MetricsClient.swift in Sources */,
+				BE0E497E66D63FBB256B5BD6 /* NetworkMonitor.swift in Sources */,
+				1E732CDAF64A91FF2855C745 /* Notifier.swift in Sources */,
+				32846B5F85776AD7FA9EEB95 /* PowerObserver.swift in Sources */,
+				2BE6CF1408176399C77D7239 /* PreferencesStore.swift in Sources */,
+				3AD07AC82B0351CD9A2B20C2 /* PrefsTokenStore.swift in Sources */,
+				7878176A16CB80075125979F /* QRCode.swift in Sources */,
+				A96333C4873BCED739FB1781 /* SelfTest.swift in Sources */,
+				B92FE8217BDE9064A2EC65F1 /* SettingsView.swift in Sources */,
+				F4C0CB61D6F91361DA4CB4A6 /* SubdomainStep.swift in Sources */,
+				8F0E8068A6AF4D6FF5F5064E /* TokenStep.swift in Sources */,
+				09FAB39356CC77A65D5C9569 /* TokenVerify.swift in Sources */,
+				FD1A1DD1B7C65C6BC9C8D09A /* Tunnel.swift in Sources */,
+				AE0F5BD48E0FF5A9816C7D7B /* TunnelState.swift in Sources */,
+				FF024D0958DC26FDEAFD315A /* TunnelStateObserver.swift in Sources */,
+				F0FADEDCA225C57C5305531A /* TunnelTab.swift in Sources */,
+				B5AD081C7E796A83FD6F81EB /* WelcomeStep.swift in Sources */,
+				B5699040A14B35B8DF3955C9 /* WizardCoordinator.swift in Sources */,
+				41A69E041293EF46EB45C223 /* Zone.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4823B8F2A4DD4055E51CBCB0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A349F32014A42AFE74186BE /* APIEnvelope.swift in Sources */,
+				9B545AB6F26ED987066BB933 /* AccessApp.swift in Sources */,
+				1AFE292E683C82F005C04E4B /* Account.swift in Sources */,
+				D8922ABC8E1E7CEA09F79734 /* CloudflareClient.swift in Sources */,
+				C1BA621581B101FF73F013B6 /* CloudflareError.swift in Sources */,
+				646D882DBF61DC08DCFC73EB /* DNSRecord.swift in Sources */,
+				E998CAC7F8E5CA8D11C7BE74 /* Endpoints.swift in Sources */,
+				7654CA6DAC121ED4EB681E75 /* Log.swift in Sources */,
+				734446378D77089111CDE240 /* SmokeRunner.swift in Sources */,
+				36ABED06EC70FC5C88E0B446 /* TokenVerify.swift in Sources */,
+				02A737440ACEB579F1C7E8CE /* Tunnel.swift in Sources */,
+				D35FECE50D4F0E25CC0EA47F /* Zone.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		698823C0E938597C1F4A72A0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0E56E50736DD29CA0DDDBA6 /* KeychainService.swift in Sources */,
+				7C58ADA0FE113FBDB8B140AF /* Log.swift in Sources */,
+				E50B3863FD3A0615DF06607E /* PersistRunner.swift in Sources */,
+				050146CF0E09D8F89DDDFEE4 /* PreferencesStore.swift in Sources */,
+				9DDD3F591AC78CC2D478A507 /* PrefsTokenStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		09E98374A003C4AEFF64AABE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/Burrow.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		284F065633DB3872FC223243 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow.persist;
+				PRODUCT_NAME = BurrowPersist;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4A60A4D412014FA4267F5932 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/Burrow.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = Burrow;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		4CEDCD648F9EEADCE706288D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow.e2e;
+				PRODUCT_NAME = BurrowE2E;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		4F657D94993F13C2EFDEF53B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow.persist;
+				PRODUCT_NAME = BurrowPersist;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6BAC7759243F10B641FFC783 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow.smoke;
+				PRODUCT_NAME = BurrowSmoke;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		8D8F51EF829809487116B608 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Resources/Burrow.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = Burrow;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = minimal;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		A7E51A6F765E19F5CC6C065D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Resources/Burrow.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		AB3CF6B7C50AAB759D607B4B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow.smoke;
+				PRODUCT_NAME = BurrowSmoke;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		E3D4708BD0E44926C3635158 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.krzemienski.burrow.e2e;
+				PRODUCT_NAME = BurrowE2E;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		08B0CCD679B49C553FEE1DF3 /* Build configuration list for PBXNativeTarget "BurrowE2E" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3D4708BD0E44926C3635158 /* Debug */,
+				4CEDCD648F9EEADCE706288D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5EAFE43D2E9BFCE1E1C10A91 /* Build configuration list for PBXNativeTarget "BurrowSmoke" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BAC7759243F10B641FFC783 /* Debug */,
+				AB3CF6B7C50AAB759D607B4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		752C48E9ABB0504D690114F0 /* Build configuration list for PBXProject "Burrow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8D8F51EF829809487116B608 /* Debug */,
+				4A60A4D412014FA4267F5932 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		93592F18CB02794C4D13EA94 /* Build configuration list for PBXNativeTarget "BurrowPersist" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F657D94993F13C2EFDEF53B /* Debug */,
+				284F065633DB3872FC223243 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D016279BE243D15A85A2873C /* Build configuration list for PBXNativeTarget "Burrow" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A7E51A6F765E19F5CC6C065D /* Debug */,
+				09E98374A003C4AEFF64AABE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		24504FE13F33645CA69CFE0F /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				kind = exactVersion;
+				version = 4.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA92976A5B9D858BD2FEA63F /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24504FE13F33645CA69CFE0F /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FF7FC45A13AE71B8862BCB3D /* Project object */;
+}

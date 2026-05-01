@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Burrow entitlements (PRP §NFR-S6 + §3.6 gotcha #6).
+         App Sandbox is OFF for v1.0 because the cloudflared child process
+         lives outside the bundle (Homebrew install path). Sandbox refactor
+         is a v1.2 milestone (PRD §13 Q1).
+         Hardened Runtime is ON; com.apple.security.network.client is the
+         only entitlement we need under hardened runtime to make outbound
+         HTTPS requests to api.cloudflare.com. -->
+
+    <key>com.apple.security.app-sandbox</key>
+    <false/>
+
+    <key>com.apple.security.network.client</key>
+    <true/>
+</dict>
+</plist>

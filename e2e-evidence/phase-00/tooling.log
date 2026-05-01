@@ -1,0 +1,27 @@
+=== Burrow tooling inventory ===
+2026-05-01T00:05:07Z
+
+cloudflared: /opt/homebrew/bin/cloudflared
+cloudflared version 2026.3.0 (built 2026-03-06T12:53:40Z)
+
+xcodebuild: /usr/bin/xcodebuild
+Xcode 26.4.1
+Build version 17E202
+
+jq: /opt/homebrew/bin/jq
+jq-1.8.1
+
+curl: /usr/bin/curl
+curl 8.7.1 (x86_64-apple-darwin25.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.68.1
+
+sshpass: /opt/homebrew/bin/sshpass
+sshpass 1.10
+
+sips: /usr/bin/sips
+sips-316
+
+wrangler: /usr/local/bin/wrangler
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mUsing "CF_API_KEY" environment variable. This is deprecated. Please use "CLOUDFLARE_API_KEY", instead.[0m
+
+security: /usr/bin/security (system Keychain CLI)
+Usage: security [-h] [-i] [-l] [-p prompt] [-q] [-v] [command] [opt ...]

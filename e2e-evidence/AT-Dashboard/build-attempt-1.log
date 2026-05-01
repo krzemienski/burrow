@@ -1,0 +1,213 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -scheme Burrow -configuration Debug -destination platform=macOS build
+
+Resolve Package Graph
+
+
+Resolved source packages:
+  KeychainAccess: https://github.com/kishikawakatsumi/KeychainAccess.git @ 4.2.2
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, id:00006041-001C488414FA801C, name:My Mac }
+{ platform:macOS, arch:x86_64, id:00006041-001C488414FA801C, name:My Mac }
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (3 targets)
+    Target 'Burrow' in project 'Burrow'
+        ➜ Explicit dependency on target 'KeychainAccess' in project 'KeychainAccess'
+    Target 'KeychainAccess' in project 'KeychainAccess'
+        ➜ Explicit dependency on target 'KeychainAccess' in project 'KeychainAccess'
+    Target 'KeychainAccess' in project 'KeychainAccess' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 2b8e4562c6c362b277036cdfce5d642d
+Build description path: /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/XCBuildData/2b8e4562c6c362b277036cdfce5d642d.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk /Users/nick/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E251-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache
+    cd /Users/nick/Desktop/cf-tunnel-menubar/Burrow.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -o /Users/nick/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E251-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache
+
+WriteAuxiliaryFile /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.SwiftFileList (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    write-file /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.SwiftFileList
+
+WriteAuxiliaryFile /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.SwiftConstValuesFileList (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    write-file /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.SwiftConstValuesFileList
+
+WriteAuxiliaryFile /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.LinkFileList (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    write-file /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.LinkFileList
+
+WriteAuxiliaryFile /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow-OutputFileMap.json (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    write-file /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow-OutputFileMap.json
+
+Ld /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/Burrow.app/Contents/MacOS/__preview.dylib normal (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-macos14.0 -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -O0 -L/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug -F/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/PackageFrameworks -F/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug -install_name @rpath/Burrow.debug.dylib -rdynamic -Xlinker -no_deduplicate -Xlinker -dependency_info -Xlinker /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow_dependency_info.dat -Xlinker -no_adhoc_codesign -o /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/Burrow.app/Contents/MacOS/__preview.dylib
+
+SwiftDriver Burrow normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Burrow -Onone @/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.SwiftFileList -DDEBUG -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -target arm64-apple-macos14.0 -g -module-cache-path /Users/nick/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug -F /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/PackageFrameworks -F /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug -c -j16 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E251-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache -output-file-map /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/nick/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -sdk-module-cache-path /Users/nick/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.swiftmodule -validate-clang-modules-once -clang-build-session-file /Users/nick/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow_const_extract_protocols.json -Xcc -iquote -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-generated-files.hmap -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-own-target-headers.hmap -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow-d39d63d28bddfedf4cbd8e3d6ddebca5-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-project-headers.hmap -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/include -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/DerivedSources-normal/arm64 -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/DerivedSources/arm64 -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow-Swift.h -working-directory /Users/nick/Desktop/cf-tunnel-menubar -experimental-emit-module-separately -disable-cmo
+
+ProcessInfoPlistFile /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/Burrow.app/Contents/Info.plist /Users/nick/Desktop/cf-tunnel-menubar/Resources/Info.plist (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    builtin-infoPlistUtility /Users/nick/Desktop/cf-tunnel-menubar/Resources/Info.plist -producttype com.apple.product-type.application -genpkginfo /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/Burrow.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/Burrow.app/Contents/Info.plist
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/nick/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/UserNotifications-A7OK27KQMC8YCZSE7OWKZ62J7.pcm
+
+SwiftExplicitDependencyGeneratePcm arm64 /Users/nick/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/CoreWLAN-DGNFR5O1L7K4W4ZQN0EVM3KRP.pcm
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Burrow (in target 'Burrow' from project 'Burrow')
+
+EmitSwiftModule normal arm64 (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ Notifier.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Notifications/Notifier.swift (in target 'Burrow' from project 'Burrow')
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/Notifications/Notifier.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ TunnelStateObserver.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift (in target 'Burrow' from project 'Burrow')
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -c /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Models/APIEnvelope.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Models/AccessApp.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Models/Account.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/AccountZoneStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/AdvancedTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/App/AppDelegate.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/TunnelCore/BinaryLocator.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Helpers/BrandTokens.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/App/CFTunnelApp.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/CloudflareClient.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/CloudflareError.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/CloudflareTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/CloudflaredCheckStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/TunnelCore/CloudflaredManager.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/CreateTunnelStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Models/DNSRecord.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/DNSTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/DashboardInlineEditors.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/DashboardView.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Helpers/DocsDeepLink.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/DoneStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Endpoints.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/GeneralTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/TunnelCore/IngressConfigBuilder.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Keychain/KeychainService.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Logging/Log.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/MenuBar/MenuBarContentView.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Metrics/MetricsClient.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Networking/NetworkMonitor.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Notifications/Notifier.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Networking/PowerObserver.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Preferences/PreferencesStore.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Preferences/PrefsTokenStore.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Helpers/QRCode.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Diagnostics/SelfTest.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/SettingsView.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/SubdomainStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/TokenStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Models/TokenVerify.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Models/Tunnel.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/TunnelCore/TunnelState.swift -primary-file /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/TunnelTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/WelcomeStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/WizardCoordinator.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/CloudflareAPI/Models/Zone.swift -emit-dependencies-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/TunnelStateObserver.d -emit-const-values-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/TunnelStateObserver.swiftconstvalues -emit-reference-dependencies-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/TunnelStateObserver.swiftdeps -serialize-diagnostics-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/TunnelStateObserver.dia -target arm64-apple-macos14.0 -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow-dependencies-1.json -debug-module-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow.swiftmodule -Xllvm -aarch64-use-tbi -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.4.sdk -I /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug -F /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/PackageFrameworks -F /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -module-cache-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -swift-version 5 -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/Burrow_const_extract_protocols.json -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /Users/nick/Library/Developer/Xcode/DerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Users/nick/Desktop/cf-tunnel-menubar -enable-anonymous-context-mangled-names -file-compilation-dir /Users/nick/Desktop/cf-tunnel-menubar -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/macosx26.4-25E251-30f9ca8789b706f8bd3fc906a70d770f.sdkstatcache -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-generated-files.hmap -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-own-target-headers.hmap -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow-d39d63d28bddfedf4cbd8e3d6ddebca5-VFS/all-product-headers.yaml -Xcc -iquote -Xcc /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Burrow-project-headers.hmap -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Products/Debug/include -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/DerivedSources-normal/arm64 -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/DerivedSources/arm64 -Xcc -I/Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/DerivedSources -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name Burrow -frontend-parseable-output -disable-clang-spi -clang-target arm64-apple-macos26.4 -target-sdk-version 26.4 -target-sdk-name macosx26.4 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -o /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Build/Intermediates.noindex/Burrow.build/Debug/Burrow.build/Objects-normal/arm64/TunnelStateObserver.o -index-unit-output-path /Burrow.build/Debug/Burrow.build/Objects-normal/arm64/TunnelStateObserver.o -index-store-path /Users/nick/Library/Developer/Xcode/DerivedData/Burrow-fpkzlxmtaqbhwpggkxjmlklwglgd/Index.noindex/DataStore -index-system-modules
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+/Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift:68:9: error: main actor-isolated property 'stateTask' can not be referenced from a nonisolated context
+        stateTask?.cancel()
+        ^
+/Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift:24:17: note: property declared here
+    private var stateTask: Task<Void, Never>? = nil
+                ^
+/Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift:69:9: error: main actor-isolated property 'logTask' can not be referenced from a nonisolated context
+        logTask?.cancel()
+        ^
+/Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift:25:17: note: property declared here
+    private var logTask: Task<Void, Never>? = nil
+                ^
+
+SwiftCompile normal arm64 Compiling\ PrefsTokenStore.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Preferences/PrefsTokenStore.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/Preferences/PrefsTokenStore.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ QRCode.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Helpers/QRCode.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Helpers/QRCode.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ NetworkMonitor.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Networking/NetworkMonitor.swift (in target 'Burrow' from project 'Burrow')
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/Networking/NetworkMonitor.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ MetricsClient.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Metrics/MetricsClient.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/Metrics/MetricsClient.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ KeychainService.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Keychain/KeychainService.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/Keychain/KeychainService.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ SelfTest.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/Diagnostics/SelfTest.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/Diagnostics/SelfTest.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ BrandTokens.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Helpers/BrandTokens.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Helpers/BrandTokens.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ DashboardInlineEditors.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/DashboardInlineEditors.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/DashboardInlineEditors.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ DashboardView.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/DashboardView.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/DashboardView.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ CloudflaredManager.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/TunnelCore/CloudflaredManager.swift (in target 'Burrow' from project 'Burrow')
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/TunnelCore/CloudflaredManager.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling KeychainService.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftDriverJobDiscovery normal arm64 Compiling BrandTokens.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 Compiling\ CloudflareTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/CloudflareTab.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/CloudflareTab.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ DNSTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/DNSTab.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/DNSTab.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ CreateTunnelStep.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/CreateTunnelStep.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/Steps/CreateTunnelStep.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ TunnelTab.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/TunnelTab.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Settings/TunnelTab.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ MenuBarContentView.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/MenuBar/MenuBarContentView.swift (in target 'Burrow' from project 'Burrow')
+
+SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/MenuBar/MenuBarContentView.swift (in target 'Burrow' from project 'Burrow')
+    cd /Users/nick/Desktop/cf-tunnel-menubar
+    
+
+SwiftCompile normal arm64 Compiling\ WizardCoordinator.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/FirstRun/WizardCoordinator.swift (in target 'Burrow' from project 'Burrow')
+
+note: Disabling hardened runtime with ad-hoc codesigning. (in target 'Burrow' from project 'Burrow')
+** BUILD FAILED **
+
+
+The following build commands failed:
+	SwiftCompile normal arm64 Compiling\ TunnelStateObserver.swift /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift (in target 'Burrow' from project 'Burrow')
+	SwiftCompile normal arm64 /Users/nick/Desktop/cf-tunnel-menubar/Sources/UI/Dashboard/TunnelStateObserver.swift (in target 'Burrow' from project 'Burrow')
+	Building project Burrow with scheme Burrow and configuration Debug
+(3 failures)

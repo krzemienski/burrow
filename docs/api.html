@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burrow Docs — Cloudflare API</title>
+  <link rel="stylesheet" href="assets/docs.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../site/index.html" class="nav-brand">
+      <img src="../site/assets/wordmark.svg" alt="Burrow" width="120" height="24">
+    </a>
+    <div class="nav-search">
+      <input type="search" id="search-input" placeholder="Search docs…" aria-label="Search documentation">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar">
+      <nav aria-label="Documentation navigation">
+        <ul class="sidebar-nav">
+          <li class="nav-section">Getting Started</li>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="install.html">Installation</a></li>
+          <li class="nav-section">Reference</li>
+          <li><a href="configure.html">Configuration</a></li>
+          <li><a href="api.html" class="active">Cloudflare API</a></li>
+          <li class="nav-section">Support</li>
+          <li><a href="troubleshoot.html">Troubleshooting</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content" id="main-content">
+      <h1>Cloudflare API Reference</h1>
+      <p class="lead">Every Cloudflare API v4 endpoint Burrow calls, with the exact request shape and expected response. Use these with <code>curl</code> to debug token issues or verify state outside the app.</p>
+
+      <h2 id="auth">Authentication</h2>
+      <p>All requests use Bearer token authentication. Base URL: <code>https://api.cloudflare.com/client/v4</code>. Every request must include:</p>
+      <div class="code-wrap">
+        <pre><code>Authorization: Bearer &lt;your_api_token&gt;
+Content-Type: application/json</code></pre>
+      </div>
+      <p>Burrow uses a single <code>URLSession</code> for all API calls and applies exponential backoff on HTTP 429 responses. Cloudflare rate limit: 1200 requests per 5-minute window per account across all clients sharing the token.</p>
+
+      <h2 id="token-verify">Token verification</h2>
+      <p>Called immediately after token entry in the wizard and on every app launch to confirm the token is active.</p>
+      <div class="code-wrap">
+        <pre><code>GET /user/tokens/verify
+
+200 OK
+{
+  "result": { "id": "abc123", "status": "active" },
+  "success": true,
+  "errors": [],
+  "messages": []
+}
+
+401 Unauthorized  ← token invalid or revoked</code></pre>
+      </div>
+      <p>Burrow parses the <code>status</code> field. Any value other than <code>"active"</code> triggers the red-dot state and a re-authorize notification. After token entry, Burrow also checks that all four required permission scopes are present in the token's policy list.</p>
+
+      <h2 id="accounts">Account discovery</h2>
+      <p>Fetches all accounts the token can access. Used in wizard step 3 to populate the account picker. If only one account is returned, the picker is skipped.</p>
+      <div class="code-wrap">
+        <pre><code>GET /accounts
+
+200 OK
+{
+  "result": [
+    { "id": "&lt;account_id&gt;", "name": "Personal Account" }
+  ],
+  "success": true
+}</code></pre>
+      </div>
+
+      <h2 id="zones">Zone discovery</h2>
+      <p>Lists all zones accessible to the token. Paginated at 50 per page. Used in wizard step 4 to populate the zone picker.</p>
+      <div class="code-wrap">
+        <pre><code>GET /zones?per_page=50
+
+200 OK
+{
+  "result": [
+    {
+      "id": "&lt;zone_id&gt;",
+      "name": "hack.ski",
+      "status": "active",
+      "account": { "id": "&lt;account_id&gt;" }
+    }
+  ],
+  "success": true
+}</code></pre>
+      </div>
+
+      <h2 id="create-tunnel">Create tunnel</h2>
+      <p>Creates a named, cloud-managed tunnel. Called once during wizard step 7. The <code>config_src: "cloudflare"</code> field is mandatory — omitting it defaults to <code>"local"</code> mode, which requires a YAML config file on disk and prevents the ingress PUT API from working.</p>
+      <div class="code-wrap">
+        <pre><code>POST /accounts/{account_id}/cfd_tunnel
+{
+  "name": "cf-tunnel-menubar-m4",
+  "config_src": "cloudflare"
+}
+
+200 OK
+{
+  "result": {
+    "id": "&lt;tunnel_uuid&gt;",
+    "name": "cf-tunnel-menubar-m4",
+    "token": "&lt;run_token_base64&gt;"
+  },
+  "success": true
+}</code></pre>
+      </div>
+      <p>The <code>token</code> in the response is the run token passed to <code>cloudflared tunnel run --token</code>. Burrow stores it in Keychain immediately and never logs it.</p>
+
+      <h2 id="get-token">Get run token</h2>
+      <p>Re-fetches the run token for an existing tunnel. Used during recovery if the Keychain item is missing or corrupt.</p>
+      <div class="code-wrap">
+        <pre><code>GET /accounts/{account_id}/cfd_tunnel/{tunnel_id}/token
+
+200 OK
+{
+  "result": "&lt;run_token_base64&gt;",
+  "success": true
+}</code></pre>
+      </div>
+
+      <h2 id="set-ingress">Set ingress configuration</h2>
+      <p>Pushes ingress rules to Cloudflare's edge. Called during wizard step 7 after tunnel creation. The catch-all rule with no hostname is required as the last entry — the API rejects any ingress array whose final rule has a <code>hostname</code> field.</p>
+      <div class="code-wrap">
+        <pre><code>PUT /accounts/{account_id}/cfd_tunnel/{tunnel_id}/configurations
+{
+  "config": {
+    "ingress": [
+      {
+        "hostname": "m4.hack.ski",
+        "service": "ssh://localhost:22"
+      },
+      {
+        "service": "http_status:404"
+      }
+    ]
+  }
+}
+
+200 OK
+{ "result": { ... }, "success": true }</code></pre>
+      </div>
+
+      <h2 id="list-tunnels">List tunnels</h2>
+      <p>Lists all non-deleted tunnels in the account. Used during wizard step 5 to detect name conflicts and during the recovery flow to find an existing tunnel by name.</p>
+      <div class="code-wrap">
+        <pre><code>GET /accounts/{account_id}/cfd_tunnel?is_deleted=false
+
+200 OK
+{
+  "result": [
+    { "id": "&lt;uuid&gt;", "name": "cf-tunnel-menubar-m4", "status": "healthy" }
+  ],
+  "success": true
+}</code></pre>
+      </div>
+
+      <h2 id="delete-tunnel">Delete tunnel</h2>
+      <p>Permanently deletes a tunnel. The tunnel must have zero active connections. Burrow stops <code>cloudflared</code>, waits 10 seconds, then retries this call up to three times before reporting failure.</p>
+      <div class="code-wrap">
+        <pre><code>DELETE /accounts/{account_id}/cfd_tunnel/{tunnel_id}
+
+200 OK
+{ "result": { "id": "&lt;tunnel_uuid&gt;" }, "success": true }
+
+409 Conflict  ← tunnel still has active connections, retry after delay</code></pre>
+      </div>
+
+      <h2 id="dns-records">DNS record CRUD</h2>
+      <p>Burrow creates, checks, and deletes one CNAME record. The record must use <code>proxied: true</code> — a non-proxied CNAME to <code>cfargotunnel.com</code> returns NXDOMAIN because Cloudflare does not expose an underlying IP without the proxy layer.</p>
+      <div class="code-wrap">
+        <pre><code>// Check for existing record before creating
+GET /zones/{zone_id}/dns_records?name=m4.hack.ski&amp;type=CNAME
+
+// Create record
+POST /zones/{zone_id}/dns_records
+{
+  "type": "CNAME",
+  "name": "m4.hack.ski",
+  "content": "&lt;tunnel_uuid&gt;.cfargotunnel.com",
+  "proxied": true,
+  "ttl": 1
+}
+
+200 OK
+{
+  "result": { "id": "&lt;record_id&gt;", "name": "m4.hack.ski" },
+  "success": true
+}
+
+// Delete record (uninstall flow)
+DELETE /zones/{zone_id}/dns_records/{record_id}</code></pre>
+      </div>
+      <p><code>ttl: 1</code> means automatic TTL managed by Cloudflare. The record ID returned by POST is stored in <code>PreferencesStore</code> for future update and delete operations without an extra lookup.</p>
+
+      <h2 id="curl-examples">Manual curl examples</h2>
+      <p>To debug a token issue outside Burrow:</p>
+      <div class="code-wrap">
+        <pre><code>export CF_TOKEN="your_token_here"
+export ACCOUNT_ID="your_account_id"
+
+# Verify token is active
+curl -s -H "Authorization: Bearer $CF_TOKEN" \
+  https://api.cloudflare.com/client/v4/user/tokens/verify \
+  | python3 -m json.tool
+
+# List non-deleted tunnels
+curl -s -H "Authorization: Bearer $CF_TOKEN" \
+  "https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/cfd_tunnel?is_deleted=false" \
+  | python3 -m json.tool</code></pre>
+      </div>
+
+      <div class="callout callout-note">
+        <strong>Rate limits.</strong> Cloudflare enforces 1200 requests per 5 minutes per account across all clients using the same token. Manual <code>curl</code> tests while Burrow is running count against the same limit.
+      </div>
+    </main>
+  </div>
+
+  <script src="assets/search.js"></script>
+</body>
+</html>

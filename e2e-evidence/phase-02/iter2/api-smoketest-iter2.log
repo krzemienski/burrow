@@ -1,0 +1,25 @@
+[01] verifyToken
+[01] ok id=281beef0ef577e7e27a19f57d11c9d86 status=active
+[02] listAccounts
+[02] ok count=1 chosen=Krzemienski@gmail.com's Account
+[03] listZones
+[03] ok count=1 chosen=hack.ski id=12f4706acc6e070e805943e72f5e7cc7
+[04] createTunnel name=burrow-smoke-1777598575
+[04] ok id=975ffe02-ed22-4e63-add6-62a1682817b1 cname=975ffe02-ed22-4e63-add6-62a1682817b1.cfargotunnel.com token_present=true
+[05] getTunnelRunToken
+[05] ok token_len=240
+[06] setIngressConfig host=burrow-smoke-1777598575.hack.ski port=22
+[06] ok
+[07] listTunnels (verify newly-created visible)
+[07] ok total=6 created_visible=true
+[08] findCNAME (must be nil before create)
+[08] ok pre_exists=false
+[09] createCNAME burrow-smoke-1777598575.hack.ski → 975ffe02-ed22-4e63-add6-62a1682817b1.cfargotunnel.com
+[09] ok id=55ad935f52ee093d26a89e7065442cd2 proxied=true ttl=1
+[10] updateCNAME (no-op rewrite to same target)
+[10] ok id=55ad935f52ee093d26a89e7065442cd2
+[11] deleteDNSRecord id=55ad935f52ee093d26a89e7065442cd2
+[11] ok
+[12] deleteTunnel id=975ffe02-ed22-4e63-add6-62a1682817b1
+[12] ok
+[DONE] BURROW_SMOKE_OK all 11 endpoints + CNAME round-trip succeeded

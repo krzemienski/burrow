@@ -1,0 +1,35 @@
+[01] verifyToken
+[01] ok id=281beef0ef577e7e27a19f57d11c9d86 status=active
+[02] listAccounts
+[02] ok count=1 chosen=Krzemienski@gmail.com's Account id=24080dbbce9363d385fac0500c121b85
+[03] listZones → resolve parent zone of m4.hack.ski
+[03] ok zone=hack.ski id=12f4706acc6e070e805943e72f5e7cc7
+[03] tunnelName=burrow-m4 subdomain=m4
+[04] listTunnels (check for 'burrow-m4')
+[04] REUSE existing id=c629e718-8fd2-4ce4-9054-fb1ac6f711d8
+[05] getTunnelRunToken
+[05] ok token_len=240 keychain=true
+[06] setIngressConfig hostname=m4.hack.ski port=22
+[06] ok
+[07] findCNAME m4.hack.ski
+[07] REUSE existing CNAME id=de51a69a13ff40c1f30d8d407db82661
+[08] accessAppCreate name=burrow-m4 domain=m4.hack.ski
+[08] ok app_id=7af17021-21a9-44a4-9304-c23d47608bea
+[09] accessServiceTokenCreate name=burrow-m4-svc
+[09] ok svc_id=5549f6ce-587e-497e-bd1f-43c3f154f79b client_id_len=39 secret=present
+[09] svc token stored in keychain appID=7af17021-21a9-44a4-9304-c23d47608bea
+[10] accessPolicyCreate service-token-allow
+[10] ok policy_id=49b4e8aa-fde0-4c41-b4e9-6ab8220f21d6
+[10] prefs persisted
+[EVIDENCE] wrote /Users/nick/Desktop/cf-tunnel-menubar/e2e-evidence/AT-2/setup.json (410 bytes)
+[SETUP_OK] {
+  "tunnel_id": "c629e718-8fd2-4ce4-9054-fb1ac6f711d8",
+  "tunnel_name": "burrow-m4",
+  "hostname": "m4.hack.ski",
+  "dns_record_id": "de51a69a13ff40c1f30d8d407db82661",
+  "app_id": "7af17021-21a9-44a4-9304-c23d47608bea",
+  "policy_id": "49b4e8aa-fde0-4c41-b4e9-6ab8220f21d6",
+  "service_token_id": "5549f6ce-587e-497e-bd1f-43c3f154f79b",
+  "service_token_client_id_len": 39,
+  "service_token_present": true
+}

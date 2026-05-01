@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIconFile</key>
+    <string></string>
+    <key>CFBundleIconName</key>
+    <string>AppIcon</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.krzemienski.burrow</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>Burrow</string>
+    <key>CFBundleDisplayName</key>
+    <string>Burrow</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+
+    <!-- ===== Burrow critical plist keys ===== -->
+
+    <!-- Hide Dock icon. Burrow lives in the menu bar only. -->
+    <key>LSUIElement</key>
+    <true/>
+
+    <!-- App category for the App Store info even if we sideload via DMG. -->
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.developer-tools</string>
+
+    <!-- Privacy strings -->
+    <key>NSHumanReadableCopyright</key>
+    <string>Copyright © 2026 Nick Krzemienski. All rights reserved.</string>
+
+    <!-- Network — Burrow only ever makes outbound HTTPS to api.cloudflare.com.
+         No localhost server, no insecure HTTP, no allowsArbitraryLoads. -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <false/>
+    </dict>
+
+    <!-- Notification authorization is requested at runtime (UNUserNotificationCenter). -->
+</dict>
+</plist>

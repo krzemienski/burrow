@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burrow Docs — Troubleshooting</title>
+  <link rel="stylesheet" href="assets/docs.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="../site/index.html" class="nav-brand">
+      <img src="../site/assets/wordmark.svg" alt="Burrow" width="120" height="24">
+    </a>
+    <div class="nav-search">
+      <input type="search" id="search-input" placeholder="Search docs…" aria-label="Search documentation">
+      <div id="search-results" class="search-results" hidden></div>
+    </div>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar">
+      <nav aria-label="Documentation navigation">
+        <ul class="sidebar-nav">
+          <li class="nav-section">Getting Started</li>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="install.html">Installation</a></li>
+          <li class="nav-section">Reference</li>
+          <li><a href="configure.html">Configuration</a></li>
+          <li><a href="api.html">Cloudflare API</a></li>
+          <li class="nav-section">Support</li>
+          <li><a href="troubleshoot.html" class="active">Troubleshooting</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="content" id="main-content">
+      <h1>Troubleshooting</h1>
+      <p class="lead">Symptoms, causes, and fixes for the most common Burrow failures. Start with the log stream command — it narrows most issues within seconds.</p>
+
+      <h2 id="logs">Reading the system log</h2>
+      <p>Burrow writes all diagnostic output to the macOS unified log under subsystem <code>com.krzemienski.burrow</code>. Stream live output:</p>
+      <div class="code-wrap">
+        <pre><code>log stream --predicate 'subsystem == "com.krzemienski.burrow"' --level debug</code></pre>
+      </div>
+      <p>Log categories: <code>tunnel</code>, <code>cloudflare</code>, <code>network</code>, <code>ui</code>, <code>keychain</code>, <code>lifecycle</code>. Filter to tunnel events only:</p>
+      <div class="code-wrap">
+        <pre><code>log stream --predicate 'subsystem == "com.krzemienski.burrow" AND category == "tunnel"'</code></pre>
+      </div>
+      <p>All <code>--token</code> values are scrubbed before reaching the log — you will see <code>--token [REDACTED]</code> in any command-line captures. Full DNS API response bodies are stripped in error paths; only the HTTP status and error message are logged.</p>
+
+      <h2 id="red-dot">Menu bar icon stays gray or shows red dot</h2>
+
+      <h3>Token invalid (401)</h3>
+      <p>Symptom: red dot, Cloudflare tab shows "API token rejected." Cause: the token was revoked or expired at <a href="https://dash.cloudflare.com/profile/api-tokens" target="_blank" rel="noopener">dash.cloudflare.com/profile/api-tokens</a>. Fix: create a new token with the four required scopes (see <a href="install.html#token">Installation → Step 1</a>), then open Settings → Cloudflare → Change token.</p>
+
+      <h3>Token missing scope</h3>
+      <p>Symptom: red dot, Settings shows a scope diff listing the missing permissions. Fix: edit the token at the Cloudflare dashboard and add the missing permission, or create a fresh token. Burrow re-validates automatically within 60 seconds of a Keychain write.</p>
+
+      <h3>cloudflared not found</h3>
+      <p>Symptom: gray icon at startup, notification "Install with <code>brew install cloudflared</code>." Cause: <code>BinaryLocator</code> searched <code>/opt/homebrew/bin</code>, <code>/usr/local/bin</code>, and <code>/usr/bin</code> and found nothing. Fix: run <code>brew install cloudflared</code>, then open Settings → Advanced and click <strong>Detect path</strong>. For non-Homebrew installs, paste the full path in the custom path field and Burrow validates it with <code>cloudflared --version</code>.</p>
+
+      <h2 id="tunnel-fails">Tunnel starts then immediately exits</h2>
+
+      <h3>Run token stale</h3>
+      <p>Cause: <code>cloudflared</code> exits with code 1 and logs <code>ERR failed to unmarshal tunnel credentials</code>. This happens when the tunnel was deleted and recreated on the Cloudflare dashboard outside of Burrow — the stored run token no longer matches the current tunnel. Fix: open Settings → Advanced → Delete tunnel to clear all state, then re-run the wizard. The wizard creates a fresh tunnel and stores the new run token in Keychain.</p>
+
+      <h3>Port 22 not listening</h3>
+      <p>Cause: <code>cloudflared</code> starts successfully but SSH connections time out at the local side. Verify the SSH daemon is running:</p>
+      <div class="code-wrap">
+        <pre><code>sudo launchctl list | grep ssh</code></pre>
+      </div>
+      <p>On macOS, enable Remote Login in System Settings → General → Sharing → Remote Login. The tunnel ingress is fixed to <code>ssh://localhost:22</code> — if sshd is not bound to that port, all connections fail locally.</p>
+
+      <h3>Three failures in five minutes</h3>
+      <p>Cause: <code>CloudflaredManager</code> counts exit events in a sliding 5-minute window. When the count reaches three, Burrow stops auto-restarting and posts a persistent notification. Fix: check the <code>tunnel</code> log category for the exit reason, resolve the underlying cause, then click <strong>Retry</strong> in the Burrow menu.</p>
+
+      <h2 id="dns">DNS issues</h2>
+
+      <h3>CNAME returns NXDOMAIN</h3>
+      <p>Cause: the record was created with <code>proxied: false</code>, or manually deleted from the Cloudflare dashboard. A non-proxied CNAME to <code>cfargotunnel.com</code> always returns NXDOMAIN — Cloudflare does not expose an IP for tunnel targets without the orange-cloud proxy enabled. Fix: open the Cloudflare dashboard → DNS, find the CNAME for your subdomain, and set it to <em>Proxied</em>.</p>
+
+      <h3>Subdomain already exists warning</h3>
+      <p>Symptom: wizard step 5 shows "CNAME already exists at m4.hack.ski." Cause: a prior Burrow install or manual DNS entry left a record. Fix: choose a different subdomain, or delete the existing record from the Cloudflare dashboard before proceeding. Burrow will not overwrite an existing record automatically.</p>
+
+      <h2 id="sleep-wake">Tunnel does not recover after sleep</h2>
+      <p>Cause: <code>PowerObserver</code> uses <code>IORegisterForSystemPower</code> to receive wake notifications. If the notification is missed on a rapid sleep/wake cycle, <code>cloudflared</code> remains stopped. Fix: click the Burrow menu icon and select <strong>Start tunnel</strong> for a manual restart. Check the <code>lifecycle</code> log category around the wake timestamp to confirm whether the notification was received.</p>
+
+      <h2 id="smappservice">Launch at login toggle has no effect</h2>
+      <p>Cause: <code>SMAppService.mainApp.register()</code> fails silently when the app is not in <code>/Applications</code>. This is an Apple requirement for the modern login item API (Apple TN3127). Fix: quit Burrow, move <code>Burrow.app</code> to <code>/Applications</code>, relaunch, and toggle the setting again. Verify the item appears in System Settings → General → Login Items.</p>
+
+      <h2 id="rate-limit">Cloudflare API returning 429</h2>
+      <p>Cause: Cloudflare enforces 1200 requests per 5-minute window per account across all clients sharing the token. Burrow uses a single <code>URLSession</code> with no polling loops and applies exponential backoff on 429 automatically. If the error persists beyond a few minutes, check the <code>cloudflare</code> log category for repeated request URLs — a bug causing a request loop would appear there.</p>
+
+      <h2 id="keychain">Persistent keychain errors</h2>
+      <p>Cause: on first boot, the user login keychain may not be unlocked for 1–2 seconds. Burrow uses <code>kSecAttrAccessibleAfterFirstUnlock</code> and retries with backoff on <code>errSecInteractionNotAllowed</code>. If the error is persistent rather than transient, the app was likely moved or re-signed, which invalidates the keychain ACL. Fix: open Settings → Cloudflare → Change token and re-enter the token — this writes a fresh Keychain item under the current app signature.</p>
+
+      <h2 id="sandbox">Process.launch fails</h2>
+      <p>Cause: App Sandbox is enabled. Burrow v1.0 ships with App Sandbox <em>off</em> so <code>Process.launch()</code> can reach <code>cloudflared</code> in <code>/opt/homebrew/bin</code>. If you built Burrow from source and accidentally enabled sandboxing, <code>cloudflared</code> will fail to launch with a permissions error. Fix: in Xcode → Signing &amp; Capabilities, remove the App Sandbox entitlement and rebuild.</p>
+    </main>
+  </div>
+
+  <script src="assets/search.js"></script>
+</body>
+</html>
