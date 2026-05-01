@@ -50,6 +50,7 @@
 		8EEC280A552A4ED835498F51 /* DNSTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2913062440F4B52BD4992F19 /* DNSTab.swift */; };
 		8F0E8068A6AF4D6FF5F5064E /* TokenStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE58CAD773C0B45ED9DF3EA /* TokenStep.swift */; };
 		91B97E5AEC377A979A1092A5 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898BC6024EED3128535B4ABC /* KeychainService.swift */; };
+		947302CD9716203B9EA59335 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2745C4026478DD0C0D5968B /* Assets.xcassets */; };
 		9B545AB6F26ED987066BB933 /* AccessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CB45F60308FED17593BFD4F /* AccessApp.swift */; };
 		9D9B27847D2CD54DFBE683D3 /* Tunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4317CB6BA7C74536D583223 /* Tunnel.swift */; };
 		9DDD3F591AC78CC2D478A507 /* PrefsTokenStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8E7C426FDC156CDD8DBA754 /* PrefsTokenStore.swift */; };
@@ -140,6 +141,7 @@
 		C8E7C426FDC156CDD8DBA754 /* PrefsTokenStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefsTokenStore.swift; sourceTree = "<group>"; };
 		DA77AEC94C23CFB6583263E7 /* CloudflaredCheckStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudflaredCheckStep.swift; sourceTree = "<group>"; };
 		E1D7C2B14AAC563C8B68A965 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
+		E2745C4026478DD0C0D5968B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6B46DC8A648B407439E0EF6 /* BinaryLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryLocator.swift; sourceTree = "<group>"; };
 		EF4360910574E5CB9FC2D346 /* CreateTunnelStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTunnelStep.swift; sourceTree = "<group>"; };
 		F079DA66002A89BA9AC67F03 /* WelcomeStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeStep.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			children = (
 				1259511A9570EF68B22AC8B8 /* BurrowE2E */,
 				D9CE7D925BE0549144BB25EC /* PersistRunner */,
+				DB51E6FB5EBBF4E95F4D05E7 /* Resources */,
 				6760473E38FD0853F29D021B /* SmokeRunner */,
 				AD017B973B937DC3A0B35ADB /* Sources */,
 				1A7522FFF420D479DC8FE201 /* Products */,
@@ -360,6 +363,14 @@
 			path = Sources/PersistRunner;
 			sourceTree = "<group>";
 		};
+		DB51E6FB5EBBF4E95F4D05E7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E2745C4026478DD0C0D5968B /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		DBA98C3FA776E645957652C7 /* TunnelCore */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +442,7 @@
 			buildConfigurationList = D016279BE243D15A85A2873C /* Build configuration list for PBXNativeTarget "Burrow" */;
 			buildPhases = (
 				346C5FE4FBD6BED6D68CA9A0 /* Sources */,
+				A2603B7A32AC2C8FC03FDA84 /* Resources */,
 				EB3270B2F44807419E6DF2F1 /* Frameworks */,
 			);
 			buildRules = (
@@ -530,6 +542,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A2603B7A32AC2C8FC03FDA84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				947302CD9716203B9EA59335 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		00BC18E6A1D67BEAFC7F5637 /* Sources */ = {

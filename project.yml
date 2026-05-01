@@ -35,7 +35,6 @@ targets:
           - "SmokeRunner/**"
           - "PersistRunner/**"
           - "BurrowE2E/**"
-    resources:
       - path: Resources/Assets.xcassets
     dependencies:
       - package: KeychainAccess
