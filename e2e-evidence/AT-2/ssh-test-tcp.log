@@ -1,3 +1,0 @@
-2026-05-01T02:30:29Z INF Start Websocket listener host=-
-2026-05-01T02:30:29Z ERR Error on Websocket listener error="failed to start forwarding server: listen tcp: address -: missing port in address"
-failed to start forwarding server: listen tcp: address -: missing port in address

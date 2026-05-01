@@ -1,1 +1,0 @@
-89548 /Users/nick/Desktop/cf-tunnel-menubar/build/release/Build/Products/Release/Burrow.app/Contents/MacOS/Burrow

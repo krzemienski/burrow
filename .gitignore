@@ -96,3 +96,6 @@ evidence/skill-enrichment-delta/
 
 # ----- Crucible runtime artifacts (entire dir, not just session-receipts) -----
 evidence/
+
+# ----- Per-run validation evidence (kept local; not for sharing) -----
+e2e-evidence/

@@ -1,2 +1,0 @@
-  PID    RSS      VSZ COMMAND
-89548  97136 435643152 /Users/nick/Desktop/cf-tunnel-menubar/build/release/Build/Products/Release/Burrow.app/Contents/MacOS/Burrow

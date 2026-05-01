@@ -1,2 +1,0 @@
-menubar item 1 of menu bar 2 description: status menu
-menu items: idlemissing valueOpen Dashboard…missing valuem4.hack.skimissing valuemissing valueCopy SSH commandmissing valueStart Tunnelmissing valueSettings…missing valueQuit Burrow

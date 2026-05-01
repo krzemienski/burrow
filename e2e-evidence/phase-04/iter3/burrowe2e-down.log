@@ -1,9 +1,0 @@
-[01] state_before=idle
-[01] state_after=stopped
-[EVIDENCE] wrote /Users/nick/Desktop/cf-tunnel-menubar/e2e-evidence/AT-2/orphan-check.txt (36 bytes)
-[EVIDENCE] wrote /Users/nick/Desktop/cf-tunnel-menubar/e2e-evidence/AT-2/down.json (81 bytes)
-[DOWN_OK] {
-  "state_before": "idle",
-  "state_after": "stopped",
-  "orphan_pids": "none"
-}

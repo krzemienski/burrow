@@ -33,6 +33,13 @@ actor CloudflaredManager {
 
     private(set) var state: TunnelState = .idle
 
+    /// Live child PID exposed to non-actor callers (e.g. `applicationWillTerminate`)
+    /// for synchronous cleanup that cannot wait on the actor's executor.
+    /// Zero when no child is running. Atomic via `OSAllocatedUnfairLock` is overkill
+    /// here — a plain `Atomic` `pid_t` write happens-before the read because the
+    /// terminate path is single-threaded (main thread only).
+    nonisolated(unsafe) static var liveChildPID: pid_t = 0
+
     // MARK: - Private
 
     private var process: Process?
@@ -152,6 +159,8 @@ actor CloudflaredManager {
 
         try proc.run()
         Log.tunnel.info("cloudflared launched pid=\(proc.processIdentifier)")
+        // Expose pid for non-actor cleanup paths (applicationWillTerminate).
+        Self.liveChildPID = proc.processIdentifier
     }
 
     /// Stop the tunnel gracefully. SIGTERM → 5 s grace → SIGKILL.
@@ -181,6 +190,7 @@ actor CloudflaredManager {
 
         setState(.stopped)
         process = nil
+        Self.liveChildPID = 0
     }
 
     /// Restart with a fresh run token. Used by menu bar Reconnect action.

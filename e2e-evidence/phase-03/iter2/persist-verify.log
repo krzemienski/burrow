@@ -1,7 +1,0 @@
-[READ] begin (fresh process)
-[READ] api-token MATCH
-[READ] run-token MATCH
-[READ] subdomain MATCH
-[READ] localPort MATCH
-[READ] sshUsername MATCH
-[READ-MATCH] PASS — all 5 round-trip values match

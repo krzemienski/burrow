@@ -44,13 +44,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
-        // PRP §3.6 gotcha #11: ensure the cloudflared child is reaped synchronously.
-        let semaphore = DispatchSemaphore(value: 0)
-        Task {
-            await CloudflaredManager.shared.stop()
-            semaphore.signal()
+        // PRP §3.6 gotcha #11: reap the cloudflared child synchronously.
+        //
+        // Earlier impl used a DispatchSemaphore + Task awaiting the actor's
+        // async stop(), but the main thread blocking on the semaphore starves
+        // Swift Concurrency from scheduling the actor work — child survives
+        // and AT-7 fails. Fix: kill by pid directly via POSIX `kill(2)` from
+        // the main thread, no actor hop. Pid is published by `start()` via
+        // `CloudflaredManager.liveChildPID`.
+        let pid = CloudflaredManager.liveChildPID
+        guard pid > 0 else { return }
+
+        // Phase 1: SIGTERM, give cloudflared up to 3 s to drain connections.
+        kill(pid, SIGTERM)
+        let deadline = Date().addingTimeInterval(3)
+        while Date() < deadline {
+            // ESRCH = process gone (success path).
+            if kill(pid, 0) != 0 { return }
+            Thread.sleep(forTimeInterval: 0.1)
         }
-        _ = semaphore.wait(timeout: .now() + 5)
+        // Phase 2: still alive — escalate.
+        kill(pid, SIGKILL)
     }
 
     /// Request that the SwiftUI scene graph open the named window.

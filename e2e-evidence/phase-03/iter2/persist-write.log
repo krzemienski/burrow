@@ -1,5 +1,0 @@
-[WRITE] begin
-[WRITE] ok api-token len=24
-[WRITE] ok run-token tunnelID=test-tunnel-uuid-aaaa-bbbb-cccc-dddddddddddd len=26
-[WRITE] ok prefs subdomain=m4-test-persist port=2222 user=nick
-[WROTE] all 5 keys persisted
