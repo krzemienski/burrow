@@ -12,6 +12,21 @@ import OSLog
 enum CloudflareAuth: Sendable {
     case bearer(token: String)
     case legacy(email: String, apiKey: String)
+
+    /// Resolve the right auth flavor from a stored credential. If
+    /// `PreferencesStore.shared.cloudflareEmail` is non-empty, treat the
+    /// credential as a Global API Key; otherwise treat it as a scoped
+    /// Bearer token. This lets every CF call site stay credential-agnostic.
+    @MainActor
+    static func resolved(token: String) -> CloudflareAuth {
+        if let email = PreferencesStore.shared.cloudflareEmail?
+            .trimmingCharacters(in: .whitespaces),
+           !email.isEmpty
+        {
+            return .legacy(email: email, apiKey: token)
+        }
+        return .bearer(token: token)
+    }
 }
 
 actor CloudflareClient {

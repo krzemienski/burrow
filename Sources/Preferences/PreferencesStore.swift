@@ -94,6 +94,13 @@ final class PreferencesStore {
         didSet { defaults.set(customCloudflaredPath, forKey: Keys.customCloudflaredPath) }
     }
 
+    /// Companion to the API key in Keychain. Set when the user authenticates
+    /// with a Global API Key (legacy auth needs both email and key).
+    /// `nil` means bearer-token mode.
+    var cloudflareEmail: String? {
+        didSet { defaults.set(cloudflareEmail, forKey: Keys.cloudflareEmail) }
+    }
+
     // MARK: - Computed
 
     var fullyQualifiedHostname: String? {
@@ -129,6 +136,7 @@ final class PreferencesStore {
                                 ? suite.bool(forKey: Keys.openDashboardAtLaunch) : true
         logLevel            = suite.string(forKey: Keys.logLevel) ?? "info"
         customCloudflaredPath = suite.string(forKey: Keys.customCloudflaredPath)
+        cloudflareEmail       = suite.string(forKey: Keys.cloudflareEmail)
         accessAppID           = suite.string(forKey: Keys.accessAppID)
         accessServiceTokenID  = suite.string(forKey: Keys.accessServiceTokenID)
         accessPolicyID        = suite.string(forKey: Keys.accessPolicyID)
@@ -150,6 +158,7 @@ final class PreferencesStore {
         static let openDashboardAtLaunch = "burrow.openDashboardAtLaunch"
         static let logLevel             = "burrow.logLevel"
         static let customCloudflaredPath = "burrow.customCloudflaredPath"
+        static let cloudflareEmail       = "burrow.cloudflareEmail"
         static let accessAppID           = "burrow.accessAppID"
         static let accessServiceTokenID  = "burrow.accessServiceTokenID"
         static let accessPolicyID        = "burrow.accessPolicyID"

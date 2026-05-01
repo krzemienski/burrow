@@ -6,7 +6,7 @@ import SwiftUI
 
 struct AccountZoneStep: View {
 
-    let token: String
+    let auth: CloudflareAuth
     @Binding var selectedAccount: Account?
     @Binding var selectedZone: Zone?
     var onContinue: () -> Void
@@ -104,11 +104,39 @@ struct AccountZoneStep: View {
         loadState = .loading
         Task {
             do {
-                let client = CloudflareClient(token: token)
+                let client = CloudflareClient(auth: auth)
                 async let accts = client.listAccounts()
                 async let zns   = client.listZones()
                 let (a, z) = try await (accts, zns)
                 await MainActor.run {
+                    // DEF-2 fix (PRD §11.1 AT-3): empty results with HTTP 200
+                    // means the token is active but lacks read scopes. Surface
+                    // the missing-scope guidance instead of silently advancing
+                    // to a step with empty pickers.
+                    if a.isEmpty && z.isEmpty {
+                        loadState = .error(
+                            "Token is missing required read scopes.\n\n" +
+                            "Add at least these to the token at " +
+                            "dash.cloudflare.com/profile/api-tokens:\n" +
+                            "  • Account → Account Settings → Read\n" +
+                            "  • Zone → Zone → Read"
+                        )
+                        return
+                    }
+                    if a.isEmpty {
+                        loadState = .error(
+                            "Token cannot read any accounts.\n" +
+                            "Add: Account → Account Settings → Read"
+                        )
+                        return
+                    }
+                    if z.isEmpty {
+                        loadState = .error(
+                            "Token cannot read any zones.\n" +
+                            "Add: Zone → Zone → Read"
+                        )
+                        return
+                    }
                     accounts = a
                     zones    = z
                     // Auto-select if only one option

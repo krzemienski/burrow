@@ -57,6 +57,20 @@ actor KeychainService {
         try await PrefsTokenStore.shared.deleteAPIToken()
     }
 
+    /// Resolve stored credential into a `CloudflareAuth`.
+    /// Returns `.legacy(email,key)` if `PreferencesStore.cloudflareEmail` is set,
+    /// otherwise `.bearer(token)`. `nil` means no credential stored at all.
+    func getAuth() async throws -> CloudflareAuth? {
+        guard let token = try await PrefsTokenStore.shared.getAPIToken(),
+              !token.isEmpty
+        else { return nil }
+        let email = await MainActor.run { PreferencesStore.shared.cloudflareEmail }
+        if let email, !email.isEmpty {
+            return .legacy(email: email, apiKey: token)
+        }
+        return .bearer(token: token)
+    }
+
     // MARK: - Tunnel run tokens
 
     func setRunToken(_ token: String, tunnelID: String) async throws {

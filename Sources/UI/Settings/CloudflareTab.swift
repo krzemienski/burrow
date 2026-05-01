@@ -179,7 +179,7 @@ struct CloudflareTab: View {
         loadError = nil
         Task {
             do {
-                let client = CloudflareClient(token: tokenInput)
+                let client = CloudflareClient(auth: CloudflareAuth.resolved(token: tokenInput))
                 let result = try await client.verifyToken()
                 if result.status == "active" {
                     await MainActor.run { verifyState = .valid(id: result.id) }
@@ -203,7 +203,7 @@ struct CloudflareTab: View {
     private func loadAccounts(client: CloudflareClient? = nil) {
         Task {
             do {
-                let c = client ?? CloudflareClient(token: tokenInput)
+                let c = client ?? CloudflareClient(auth: CloudflareAuth.resolved(token: tokenInput))
                 let result = try await c.listAccounts()
                 await MainActor.run {
                     accounts = result
@@ -221,7 +221,7 @@ struct CloudflareTab: View {
     private func loadZones(client: CloudflareClient? = nil) {
         Task {
             do {
-                let c = client ?? CloudflareClient(token: tokenInput)
+                let c = client ?? CloudflareClient(auth: CloudflareAuth.resolved(token: tokenInput))
                 let result = try await c.listZones()
                 await MainActor.run {
                     zones = result

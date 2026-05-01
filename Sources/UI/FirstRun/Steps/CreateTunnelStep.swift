@@ -11,7 +11,7 @@ import SwiftUI
 
 struct CreateTunnelStep: View {
 
-    let token: String
+    let auth: CloudflareAuth
     let account: Account
     let zone: Zone
     let subdomain: String
@@ -116,7 +116,7 @@ struct CreateTunnelStep: View {
         let localPort = PreferencesStore.shared.localPort
 
         Task {
-            let client = CloudflareClient(token: token)
+            let client = CloudflareClient(auth: auth)
             do {
                 // Step a: create tunnel
                 await setStep(0, .running)

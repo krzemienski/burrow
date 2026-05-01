@@ -23,10 +23,18 @@ final class WizardCoordinator {
 
     // Accumulated configuration (committed only at .done)
     var token: String = ""
+    var email: String = ""           // empty => bearer mode; non-empty => Global API Key (legacy) mode
     var selectedAccount: Account?
     var selectedZone: Zone?
     var subdomain: String = "m4"
     var cloudflaredPath: URL?
+
+    /// Synthesize the auth flavor downstream steps + CreateTunnelStep need.
+    var auth: CloudflareAuth {
+        email.trimmingCharacters(in: .whitespaces).isEmpty
+            ? .bearer(token: token)
+            : .legacy(email: email, apiKey: token)
+    }
 
     func next() {
         guard let next = Step(rawValue: current.rawValue + 1) else { return }
@@ -55,13 +63,16 @@ struct WizardCoordinatorView: View {
                 }
 
             case .token:
-                TokenStep(token: $coordinator.token) {
+                TokenStep(
+                    token: $coordinator.token,
+                    email: $coordinator.email
+                ) {
                     coordinator.next()
                 }
 
             case .accountAndZone:
                 AccountZoneStep(
-                    token: coordinator.token,
+                    auth: coordinator.auth,
                     selectedAccount: $coordinator.selectedAccount,
                     selectedZone: $coordinator.selectedZone
                 ) {
@@ -90,7 +101,7 @@ struct WizardCoordinatorView: View {
                 if let account = coordinator.selectedAccount,
                    let zone = coordinator.selectedZone {
                     CreateTunnelStep(
-                        token: coordinator.token,
+                        auth: coordinator.auth,
                         account: account,
                         zone: zone,
                         subdomain: coordinator.subdomain
@@ -109,6 +120,13 @@ struct WizardCoordinatorView: View {
                     // D-H: persist token + dismiss wizard + open Dashboard + auto-start tunnel
                     Task { @MainActor in
                         try? await KeychainService.shared.setAPIToken(coordinator.token)
+                        // Persist legacy email companion if present.
+                        let trimmedEmail = coordinator.email.trimmingCharacters(in: .whitespaces)
+                        if !trimmedEmail.isEmpty {
+                            PreferencesStore.shared.cloudflareEmail = trimmedEmail
+                        } else {
+                            PreferencesStore.shared.cloudflareEmail = nil
+                        }
 
                         // Open Dashboard (via AppDelegate's bridge)
                         NotificationCenter.default.post(

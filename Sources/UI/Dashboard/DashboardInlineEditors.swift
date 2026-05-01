@@ -116,7 +116,7 @@ struct SubdomainEditorPopover: View {
             prefs.subdomain = oldSub
             throw EditorError.missingPrerequisite("No API token in Keychain.")
         }
-        let client = CloudflareClient(token: apiToken)
+        let client = CloudflareClient(auth: CloudflareAuth.resolved(token: apiToken))
         let newHost = "\(draftSubdomain).\(zoneName)"
         let target = "\(tunnelID).cfargotunnel.com"
 

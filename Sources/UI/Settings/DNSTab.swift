@@ -119,7 +119,7 @@ struct DNSTab: View {
                     }
                     return
                 }
-                let client = CloudflareClient(token: rawToken)
+                let client = CloudflareClient(auth: CloudflareAuth.resolved(token: rawToken))
                 let target = "\(tunnelID).cfargotunnel.com"
 
                 if let existing = try await client.findCNAME(zoneID: zoneID, name: fqdn) {

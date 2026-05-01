@@ -138,7 +138,7 @@ struct TunnelTab: View {
                    let fqdn = prefs.fullyQualifiedHostname {
                     let token = try await KeychainService.shared.getAPIToken()
                     if let t = token {
-                        let client = CloudflareClient(token: t)
+                        let client = CloudflareClient(auth: CloudflareAuth.resolved(token: t))
                         if let record = try await client.findCNAME(zoneID: zoneID, name: fqdn) {
                             try await client.deleteDNSRecord(zoneID: zoneID, recordID: record.id)
                         }

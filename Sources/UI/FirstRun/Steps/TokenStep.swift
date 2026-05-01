@@ -8,6 +8,7 @@ import AppKit
 struct TokenStep: View {
 
     @Binding var token: String
+    @Binding var email: String     // empty => bearer; non-empty => Global API Key (legacy)
     var onVerified: () -> Void
 
     @State private var verifyState: TokenVerifyState = .idle
@@ -68,11 +69,21 @@ struct TokenStep: View {
             Divider()
 
             VStack(alignment: .leading, spacing: 8) {
-                Text("Paste your token:")
+                Text("Paste your API key or bearer token:")
                     .font(.callout)
 
+                Text("Leave email blank for a scoped Bearer token. Fill email for a Global API Key (legacy auth, all scopes).")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                TextField("Email (only for Global API Key)", text: $email)
+                    .textFieldStyle(.roundedBorder)
+                    .autocorrectionDisabled()
+                    .textContentType(.emailAddress)
+                    .accessibilityLabel("Cloudflare account email (legacy auth only)")
+
                 HStack {
-                    SecureField("API token", text: $token)
+                    SecureField("API key or bearer token", text: $token)
                         .textFieldStyle(.roundedBorder)
                         .accessibilityLabel("Cloudflare API token input")
 
@@ -153,7 +164,11 @@ struct TokenStep: View {
         verifyState = .checking
         Task {
             do {
-                let client = CloudflareClient(token: token)
+                let trimmedEmail = email.trimmingCharacters(in: .whitespaces)
+                let auth: CloudflareAuth = trimmedEmail.isEmpty
+                    ? .bearer(token: token)
+                    : .legacy(email: trimmedEmail, apiKey: token)
+                let client = CloudflareClient(auth: auth)
                 let result = try await client.verifyToken()
                 await MainActor.run {
                     verifyState = result.status == "active" ? .valid : .invalid("status: \(result.status)")
